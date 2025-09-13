@@ -1,0 +1,69 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/wld/indicator/SP.POP.TOTL?date=2010%3A2014&footnote=n&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590694
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2c1fe23ab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:34 GMT
+      expires: Mon, 13 Oct 2025 01:09:48 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:47 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=YDZ6KdHuQ2G276tAa.XBJTm9WR727WQTqpNFwmaN0pQ-1757727094-1.0.1.1-hFCDJ06ZJtIR9BFRz64GY_G5yyQ14aJP5eT1OQFH.E0o6MSVoOSt.4W79aRTSe0IBi4qRf8wcMhoz4Sr0pJVUFBfOyrsHW2u8BJD3nMYAIA;
+        path=/; expires=Sat, 13-Sep-25 02:01:34 GMT; domain=.worldbank.org; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=ejR1Wt_kcPnuopc9XgOrjtojC3YRNTxqd9JNpjF7D20-1757727094135-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly; Secure; SameSite=None
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2014","value":7354183367,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2013","value":7265970522,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":7176968877,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":7087120034,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":7001266876,"unit":"","obs_status":"","decimal":0}]]'
+  recorded_at: 2025-09-13 01:31:34
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/wld/indicator/NY.GDP.MKTP.CD?date=2010%3A2014&footnote=n&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590695
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2c27ec8ab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:34 GMT
+      expires: Mon, 13 Oct 2025 01:09:49 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:48 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=EgCW4NZHzNp8u_uM.eHCXTmMd1S9qEh_BG4OAPlBSWw-1757725788-1.0.1.1-cmgvg5fA1PTgtRYEmJdsiO1328rJEOHHr06V6jxcdsW9m8sGKxIWG6Ce1RVkgh7oxBiRjqyO8CJWZBFIL6o53k8SVHMj.M3QDqYUZVThNCg;
+        path=/; expires=Sat, 13-Sep-25 01:39:48 GMT; domain=.worldbank.org; HttpOnly
+      - _cfuvid=3afhEqUAlqo4Qxk5BDLqWvDEnv_bgb0_aToUrcBgXuk-1757725788029-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2014","value":80247427618833.9,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2013","value":78070094837109.7,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":75866007009764.4,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":74213035604821,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":66722149003894.3,"unit":"","obs_status":"","decimal":0}]]'
+  recorded_at: 2025-09-13 01:31:34
+recorded_with: VCR-vcr/2.0.0

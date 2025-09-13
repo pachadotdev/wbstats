@@ -1,0 +1,77 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/geo;alb;mng/indicator/SP.POP.TOTL?date=2005%3A2007&footnote=n&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590691
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2badd53ab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:33 GMT
+      expires: Mon, 13 Oct 2025 01:09:43 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:42 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=MBTJfZCwBOG4tOuktsnk8a0Tns.aXPUnS94a08iZXvk-1757725782-1.0.1.1-qLBZreYUyNeM.cVqkO3rPWgojCwV_ggxuKEwrCLZLiiYGsOo24mvHPpEsbrf5BgoAJuatMCpRnGCJegCeq3DJU5S5F8ohNXwxBElJsiEnGo;
+        path=/; expires=Sat, 13-Sep-25 01:39:42 GMT; domain=.worldbank.org; HttpOnly
+      - _cfuvid=cX5l4cklylgNJWL7HFPHk.I22RXIDzObQ9zRe7RuQNs-1757725782731-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":9,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"AL","value":"Albania"},"countryiso3code":"ALB","date":"2007","value":2970017,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"AL","value":"Albania"},"countryiso3code":"ALB","date":"2006","value":2992547,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"AL","value":"Albania"},"countryiso3code":"ALB","date":"2005","value":3011487,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"GE","value":"Georgia"},"countryiso3code":"GEO","date":"2007","value":3860158,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"GE","value":"Georgia"},"countryiso3code":"GEO","date":"2006","value":3880347,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"GE","value":"Georgia"},"countryiso3code":"GEO","date":"2005","value":3902469,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"MN","value":"Mongolia"},"countryiso3code":"MNG","date":"2007","value":2601850,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"MN","value":"Mongolia"},"countryiso3code":"MNG","date":"2006","value":2567168,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"MN","value":"Mongolia"},"countryiso3code":"MNG","date":"2005","value":2536407,"unit":"","obs_status":"","decimal":0}]]'
+  recorded_at: 2025-09-13 01:31:33
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/geo;alb;mng/indicator/NY.GDP.MKTP.CD?date=2005%3A2007&footnote=n&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590691
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2bb6dfcab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:33 GMT
+      expires: Mon, 13 Oct 2025 01:09:44 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:43 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=b4qFyYsI1P.6uopJa_UyJzx9jk5fdBhECRpjFrrYlQQ-1757727093-1.0.1.1-R40ZKzM_ivwkAzEmIbhgY6iJi6Js7bTmNw1PdMIYBniKh2_8yOZIIYN0vXV0Zaoj59JnS6QWMWhokx3_T4L10AZPqGkhOBx859OQYlgtwkA;
+        path=/; expires=Sat, 13-Sep-25 02:01:33 GMT; domain=.worldbank.org; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=sYlJbRcA0eUAYf9L05k9_tQqaw7stBM1epuyKz40vlU-1757727093123-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly; Secure; SameSite=None
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":9,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"AL","value":"Albania"},"countryiso3code":"ALB","date":"2007","value":11116937869.8568,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"AL","value":"Albania"},"countryiso3code":"ALB","date":"2006","value":9150528132.17633,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"AL","value":"Albania"},"countryiso3code":"ALB","date":"2005","value":8256658249.8128,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"GE","value":"Georgia"},"countryiso3code":"GEO","date":"2007","value":10172931088.5655,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"GE","value":"Georgia"},"countryiso3code":"GEO","date":"2006","value":7745250733.95067,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"GE","value":"Georgia"},"countryiso3code":"GEO","date":"2005","value":6410912049.87105,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"MN","value":"Mongolia"},"countryiso3code":"MNG","date":"2007","value":4234999703.90059,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"MN","value":"Mongolia"},"countryiso3code":"MNG","date":"2006","value":3414055661.61598,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"MN","value":"Mongolia"},"countryiso3code":"MNG","date":"2005","value":2523471601.10421,"unit":"","obs_status":"","decimal":0}]]'
+  recorded_at: 2025-09-13 01:31:33
+recorded_with: VCR-vcr/2.0.0

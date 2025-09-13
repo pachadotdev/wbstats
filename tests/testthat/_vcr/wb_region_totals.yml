@@ -1,0 +1,70 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/LCN;SAS;SSF;ECS;MEA;EAS;NAC/indicator/SP.POP.TOTL?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590692
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2bc3f0dab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:33 GMT
+      expires: Mon, 13 Oct 2025 01:09:45 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:44 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=rQkdHSg7ghDh94K7RxtY_eOE2g8XEpFmDiKRblvB8K4-1757725784-1.0.1.1-y.KnQb7tFiVxmA4IAcmUZO9s_Ub3vJCm9ileMTI_qlIVa2zptEzpg4koC4YtmhEEvidK.lcrxTUehImk1lZ.y7WW_6W9TdomyuTlKWAuubI;
+        path=/; expires=Sat, 13-Sep-25 01:39:44 GMT; domain=.worldbank.org; HttpOnly
+      - _cfuvid=q89SHnUBIZ2bBZr3MJPXAonINi4ZtXpo.ykQ1LO4qeE-1757725784575-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":35,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z4","value":"East Asia & Pacific"},"countryiso3code":"EAS","date":"2014","value":2284385542,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z4","value":"East Asia & Pacific"},"countryiso3code":"EAS","date":"2013","value":2267072102,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z4","value":"East Asia & Pacific"},"countryiso3code":"EAS","date":"2012","value":2249081393,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z4","value":"East Asia & Pacific"},"countryiso3code":"EAS","date":"2011","value":2230826576,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z4","value":"East Asia & Pacific"},"countryiso3code":"EAS","date":"2010","value":2214613815,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z7","value":"Europe & Central Asia"},"countryiso3code":"ECS","date":"2014","value":903676408,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z7","value":"Europe & Central Asia"},"countryiso3code":"ECS","date":"2013","value":899985362,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z7","value":"Europe & Central Asia"},"countryiso3code":"ECS","date":"2012","value":896554203,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z7","value":"Europe & Central Asia"},"countryiso3code":"ECS","date":"2011","value":893009595,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"Z7","value":"Europe & Central Asia"},"countryiso3code":"ECS","date":"2010","value":890990371,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZJ","value":"Latin America & Caribbean"},"countryiso3code":"LCN","date":"2014","value":612849401,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZJ","value":"Latin America & Caribbean"},"countryiso3code":"LCN","date":"2013","value":606683307,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZJ","value":"Latin America & Caribbean"},"countryiso3code":"LCN","date":"2012","value":600420316,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZJ","value":"Latin America & Caribbean"},"countryiso3code":"LCN","date":"2011","value":594086829,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZJ","value":"Latin America & Caribbean"},"countryiso3code":"LCN","date":"2010","value":587752505,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZQ","value":"Middle East, North Africa, Afghanistan
+        & Pakistan"},"countryiso3code":"MEA","date":"2014","value":680716578,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZQ","value":"Middle East, North Africa, Afghanistan
+        & Pakistan"},"countryiso3code":"MEA","date":"2013","value":667464006,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZQ","value":"Middle East, North Africa, Afghanistan
+        & Pakistan"},"countryiso3code":"MEA","date":"2012","value":653273442,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZQ","value":"Middle East, North Africa, Afghanistan
+        & Pakistan"},"countryiso3code":"MEA","date":"2011","value":639053870,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZQ","value":"Middle East, North Africa, Afghanistan
+        & Pakistan"},"countryiso3code":"MEA","date":"2010","value":624828664,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"XU","value":"North America"},"countryiso3code":"NAC","date":"2014","value":354755155,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"XU","value":"North America"},"countryiso3code":"NAC","date":"2013","value":351870848,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"XU","value":"North America"},"countryiso3code":"NAC","date":"2012","value":349116140,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"XU","value":"North America"},"countryiso3code":"NAC","date":"2011","value":346242415,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"XU","value":"North America"},"countryiso3code":"NAC","date":"2010","value":343447854,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"8S","value":"South Asia"},"countryiso3code":"SAS","date":"2014","value":1519839246,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"8S","value":"South Asia"},"countryiso3code":"SAS","date":"2013","value":1501661991,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"8S","value":"South Asia"},"countryiso3code":"SAS","date":"2012","value":1483553073,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"8S","value":"South Asia"},"countryiso3code":"SAS","date":"2011","value":1464372623,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"8S","value":"South Asia"},"countryiso3code":"SAS","date":"2010","value":1444967010,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZG","value":"Sub-Saharan Africa"},"countryiso3code":"SSF","date":"2014","value":997961037,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZG","value":"Sub-Saharan Africa"},"countryiso3code":"SSF","date":"2013","value":971232906,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZG","value":"Sub-Saharan Africa"},"countryiso3code":"SSF","date":"2012","value":944970310,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZG","value":"Sub-Saharan Africa"},"countryiso3code":"SSF","date":"2011","value":919528126,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"ZG","value":"Sub-Saharan Africa"},"countryiso3code":"SSF","date":"2010","value":894666657,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
+  recorded_at: 2025-09-13 01:31:33
+recorded_with: VCR-vcr/2.0.0

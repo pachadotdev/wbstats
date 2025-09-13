@@ -1,0 +1,32 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/bra/indicator/NY.GDP.MKTP.CD?date=2006%3A2006&footnote=y&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590683
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e29e8afcab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:28 GMT
+      expires: Mon, 13 Oct 2025 01:09:31 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:30 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=CcoNkvClwqPffPmz9HjtweU_2kJ6mNFLnTwL66l71pI-1757727088-1.0.1.1-F0SJcfpVTVxr66XxKudwBHR1pye1rgWFgUGTxOokbrxvSClirBSVNcfivY3ckk6Lt7pwWp5NYzRT05ETquax9DGxWdWS70PFu2Ju8Q3Rm0s;
+        path=/; expires=Sat, 13-Sep-25 02:01:28 GMT; domain=.worldbank.org; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=cNBdEqVCyxJ6V.kOZf9p_ej0asNpUWSRDZaw8pqcUYM-1757727088489-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly; Secure; SameSite=None
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":1,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2006","value":1107626541434.92,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
+  recorded_at: 2025-09-13 01:31:28
+recorded_with: VCR-vcr/2.0.0

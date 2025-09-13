@@ -1,0 +1,133 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/wld/indicator/SP.POP.TOTL?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      date: Sat, 13 Sep 2025 01:31:33 GMT
+      content-type: application/json;charset=utf-8
+      server: cloudflare
+      cf-ray: 97e3e2bf6b17ab2a-YYZ
+      cf-cache-status: DYNAMIC
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590693
+      content-encoding: gzip
+      expires: Mon, 13 Oct 2025 01:09:46 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:45 GMT
+      vary: accept-encoding
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      report-to: '{"endpoints":[{"url":"https:\/\/csp-reporting.cloudflare.com\/cdn-cgi\/script_monitor\/report?m=C42w.5WbOk4qq6ggjnveXsAiR9FVpFyd5tYDXGsXUvQ-1757727093-1.0.1.1-2WTuLtxAkfDJlnp15iIto3YQzKYNmLM_Ix2WyMebxiCc8NwLl4F787bzHWbmenySACV2RNoUPU5ksK4yIp_SeBlFL9c5bTyRAixxlYjGU8pnDAuskglZvXV9kwEOV.7qhGQ1jix.vXn1SeOpaug6WE4sZEIu6pB5uumuVWZgKNMd4ANbhRRTcHPVDz9TMceU"}],"group":"cf-csp-endpoint","max_age":86400}'
+      content-security-policy-report-only: script-src 'none'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=C42w.5WbOk4qq6ggjnveXsAiR9FVpFyd5tYDXGsXUvQ-1757727093-1.0.1.1-2WTuLtxAkfDJlnp15iIto3YQzKYNmLM_Ix2WyMebxiCc8NwLl4F787bzHWbmenySACV2RNoUPU5ksK4yIp_SeBlFL9c5bTyRAixxlYjGU8pnDAuskglZvXV9kwEOV.7qhGQ1jix.vXn1SeOpaug6WE4sZEIu6pB5uumuVWZgKNMd4ANbhRRTcHPVDz9TMceU;
+        report-to cf-csp-endpoint
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2014","value":7354183367,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2013","value":7265970522,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":7176968877,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":7087120034,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
+        total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":7001266876,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
+  recorded_at: 2025-09-13 01:31:33
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/wld/indicator/NY.GDP.MKTP.CD?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590694
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2bffbbcab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:33 GMT
+      expires: Mon, 13 Oct 2025 01:09:47 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:46 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=SgUfPRQmrjauNbnc7V5orBdmcUcVbMOgAv3yhBcgupw-1757725786-1.0.1.1-6v9dGUDYPoqrEAVMA6gCyOstyCd06bdf_ECAj3p7wnvdlPGDSXisR6ZnqAowHmr20uK_fI04UXUmv..Rwh2ekbQuP7kOxrlPlBhAMLt2QNk;
+        path=/; expires=Sat, 13-Sep-25 01:39:46 GMT; domain=.worldbank.org; HttpOnly
+      - _cfuvid=p3k5ZOHkJ62wtTWke9STRPJHR1yjgQtZbYwhjJ8N9Jo-1757725786209-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2014","value":80247427618833.9,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2013","value":78070094837109.7,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":75866007009764.4,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":74213035604821,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":66722149003894.3,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
+  recorded_at: 2025-09-13 01:31:33
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/wld/indicator/SL.UEM.TOTL.ZS?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590694
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2c08c57ab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:33 GMT
+      expires: Mon, 13 Oct 2025 01:09:47 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:46 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=q5v3ZpDF.yJ6srwI0H6aVMyLXLYTpqGU4hJDSPRtRvk-1757727093-1.0.1.1-2nOj7P5et6E8slBgMvMvRhhVcwR9JWX47xSKq6DhZjzBoL8vc.BtiYUeeVjlvt6aoKZNIiCRXUO1.89VCokhXohuAn0T41vrNV870GX68vM;
+        path=/; expires=Sat, 13-Sep-25 02:01:33 GMT; domain=.worldbank.org; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=i0W8bS_Ri7CMuynZVX12OFckCdRhp2uUHqrUoCNjHTc-1757727093926-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly; Secure; SameSite=None
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"SL.UEM.TOTL.ZS","value":"Unemployment,
+        total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2014","value":5.96545748139033,"unit":"","obs_status":"","decimal":1,"footnote":""},{"indicator":{"id":"SL.UEM.TOTL.ZS","value":"Unemployment,
+        total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2013","value":6.10728679764752,"unit":"","obs_status":"","decimal":1,"footnote":""},{"indicator":{"id":"SL.UEM.TOTL.ZS","value":"Unemployment,
+        total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":6.16018521815018,"unit":"","obs_status":"","decimal":1,"footnote":""},{"indicator":{"id":"SL.UEM.TOTL.ZS","value":"Unemployment,
+        total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":6.15719558247294,"unit":"","obs_status":"","decimal":1,"footnote":""},{"indicator":{"id":"SL.UEM.TOTL.ZS","value":"Unemployment,
+        total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":6.28651108706876,"unit":"","obs_status":"","decimal":1,"footnote":""}]]'
+  recorded_at: 2025-09-13 01:31:33
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/wld/indicator/SP.DYN.CBRT.IN?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590695
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2c12d2eab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:34 GMT
+      expires: Mon, 13 Oct 2025 01:09:48 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:47 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=rjPorj9HohNomspZfpbLV1WqwOYXhRAA0nBslim0NEE-1757725787-1.0.1.1-0yYBxhlTuoDWTdhYgx6QDGjxYvnPokEel6s5zESafayjzwug4YtfJefnboo1gjZQWbcbnrLiOa6xla4k.yAWHnD.fXSE6ujh8nPjX3.LnvY;
+        path=/; expires=Sat, 13-Sep-25 01:39:47 GMT; domain=.worldbank.org; HttpOnly
+      - _cfuvid=JyXZCu6sp5UCpypz0r0BO.6INvjrh8vX_VTHLIzgbjQ-1757725787507-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"SP.DYN.CBRT.IN","value":"Birth
+        rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2014","value":19.7720116900599,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.DYN.CBRT.IN","value":"Birth
+        rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2013","value":19.8665484130297,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.DYN.CBRT.IN","value":"Birth
+        rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":20.4146029992556,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.DYN.CBRT.IN","value":"Birth
+        rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":20.3008492434213,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.DYN.CBRT.IN","value":"Birth
+        rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":20.1883643018624,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
+  recorded_at: 2025-09-13 01:31:34
+recorded_with: VCR-vcr/2.0.0

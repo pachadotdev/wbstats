@@ -1,0 +1,69 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/bg/country/wld/indicator/SP.POP.TOTL?date=2010%3A2014&footnote=n&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590695
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2c519e2ab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:34 GMT
+      expires: Mon, 13 Oct 2025 01:09:49 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:48 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=neaqZ3f7T524sBYLlvAoZxr7YqzHeyXTu.PePRDZkG8-1757727094-1.0.1.1-bMREGXTRxuzaSimTtmEavKjfXjnsoYlcI7MvSOdE9ugxz0BTs0N4eHg5ofHBkO4rm__Esdw7jcMtzI8zPbc_SVyl4c9XyXvJ33IJmDOx6Zc;
+        path=/; expires=Sat, 13-Sep-25 02:01:34 GMT; domain=.worldbank.org; HttpOnly;
+        Secure; SameSite=None
+      - _cfuvid=0tbWu1MrGEXCIWHzvvFw31gOAApfO.zKNDA33YSa3lQ-1757727094641-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly; Secure; SameSite=None
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"SP.POP.TOTL","value":"Население,
+        общо"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2014","value":7354183367,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Население,
+        общо"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2013","value":7265970522,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Население,
+        общо"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2012","value":7176968877,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Население,
+        общо"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2011","value":7087120034,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"SP.POP.TOTL","value":"Население,
+        общо"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2010","value":7001266876,"unit":"","obs_status":"","decimal":0}]]'
+  recorded_at: 2025-09-13 01:31:34
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/bg/country/wld/indicator/NY.GDP.MKTP.CD?date=2010%3A2014&footnote=n&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      cache-control: public, must-revalidate, max-age=2590696
+      cf-cache-status: DYNAMIC
+      cf-ray: 97e3e2c59a81ab2a-YYZ
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Sat, 13 Sep 2025 01:31:34 GMT
+      expires: Mon, 13 Oct 2025 01:09:50 GMT
+      last-modified: Sat, 13 Sep 2025 01:09:49 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=1HEtG5v73gqaJpp9KJcWTulo0WL9xj2HpgNw3wKshOs-1757725789-1.0.1.1-p.YIjPltO8yJRXz5fokDYwciswUGakREgOnLkwOpf5eNjknHWeWZN9PSBF5s2o24psJG_J1fI_VRlWim6N8b2ga0YPes1vyS1lMjtiNfLM4;
+        path=/; expires=Sat, 13-Sep-25 01:39:49 GMT; domain=.worldbank.org; HttpOnly
+      - _cfuvid=mv1Cvg49g61hdeZWlObabvx6xxjsDDyhsp2mEbvljng-1757725789256-0.0.1.1-604800000;
+        path=/; domain=.worldbank.org; HttpOnly
+      vary: accept-encoding
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"БВП
+        (в текущи щатски долари)"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2014","value":80247427618833.9,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"БВП
+        (в текущи щатски долари)"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2013","value":78070094837109.7,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"БВП
+        (в текущи щатски долари)"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2012","value":75866007009764.4,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"БВП
+        (в текущи щатски долари)"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2011","value":74213035604821,"unit":"","obs_status":"","decimal":0},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"БВП
+        (в текущи щатски долари)"},"country":{"id":"1W","value":""},"countryiso3code":"WLD","date":"2010","value":66722149003894.3,"unit":"","obs_status":"","decimal":0}]]'
+  recorded_at: 2025-09-13 01:31:34
+recorded_with: VCR-vcr/2.0.0
