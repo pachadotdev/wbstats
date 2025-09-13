@@ -4,7 +4,8 @@
 \name{wb_cachelist_dep}
 \alias{wb_cachelist_dep}
 \title{Cached information from the World Bank API}
-\format{A list containing 7 data frames:
+\format{
+A list containing 7 data frames:
 \itemize{
 \item \code{countries}: A data frame. The result of calling \code{\link{wbcountries}}
 \item \code{indicators}: A data frame.The result of calling \code{\link{wbindicators}}
@@ -13,7 +14,8 @@
 \item \code{topics}: A data frame.The result of calling \code{\link{wbtopics}}
 \item \code{income}: A data frame.The result of calling \code{\link{wbincome}}
 \item \code{lending}: A data frame.The result of calling \code{\link{wblending}}
-}}
+}
+}
 \usage{
 wb_cachelist_dep
 }

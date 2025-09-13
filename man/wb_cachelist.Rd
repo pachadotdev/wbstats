@@ -4,7 +4,9 @@
 \name{wb_cachelist}
 \alias{wb_cachelist}
 \title{Cached information from the World Bank API}
-\format{An object of class \code{list} of length 8.}
+\format{
+An object of class \code{list} of length 8.
+}
 \usage{
 wb_cachelist
 }

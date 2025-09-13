@@ -2,10 +2,33 @@
 % Please edit documentation in R/wbstats-package.R
 \docType{package}
 \name{wbstats}
+\alias{wbstats-package}
 \alias{wbstats}
 \title{wbstats: An R package for searching and downloading data from the World Bank API.}
 \description{
 The wbstats package provides structured access to data
 available from the World Bank API including; support for mutliple languages,
 access to annual, quarterly, and monthly data.
+}
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/pachadotdev/wbstats}
+  \item Report bugs at \url{https://github.com/pachadotdev/wbstats/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Mauricio Vargas Sepulveda \email{m.vargas.sepulveda@gmail.com} (\href{https://orcid.org/0000-0003-1017-7574}{ORCID})
+
+Authors:
+\itemize{
+  \item Jesse Piburn \email{piburnjo@ornl.gov} (\href{https://orcid.org/0000-0003-4967-7912}{ORCID})
+}
+
+Other contributors:
+\itemize{
+  \item  The World Bank [data contributor]
+}
+
 }
