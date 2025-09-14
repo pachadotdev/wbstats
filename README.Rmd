@@ -14,12 +14,12 @@ knitr::opts_chunk$set(
 )
 ```
 
-# wbstats: An R package for searching and downloading data from the World Bank API
+# wbstats: An R package for searching and downloading data from the World Bank API <img src="man/figures/logo.svg" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/wbstats)](https://CRAN.R-project.org/package=wbstats)
 [![Monthly](https://cranlogs.r-pkg.org/badges/wbstats)](https://CRAN.R-project.org/package=wbstats)
-[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle: maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![R-CMD-check](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
@@ -34,7 +34,7 @@ or
 
 The latest development version from github with
 ```{r, eval = FALSE}
-remotes::install_github("nset-ornl/wbstats")
+remotes::install_github("pachadotdev/wbstats")
 ```
 
 # Downloading data from the World Bank

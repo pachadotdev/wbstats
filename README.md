@@ -1,7 +1,6 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-wbstats: An R package for searching and downloading data from the World Bank API
-================================================================================
+# wbstats: An R package for searching and downloading data from the World Bank API <img src="man/figures/logo.svg" align="right" height="139" alt="" />
 
 <!-- badges: start -->
 
@@ -9,7 +8,8 @@ wbstats: An R package for searching and downloading data from the World Bank API
 status](https://www.r-pkg.org/badges/version/wbstats)](https://CRAN.R-project.org/package=wbstats)
 [![Monthly](https://cranlogs.r-pkg.org/badges/wbstats)](https://CRAN.R-project.org/package=wbstats)
 [![Lifecycle:
-maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
+[![R-CMD-check](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 You can install:
@@ -25,11 +25,10 @@ or
 The latest development version from github with
 
 ``` r
-remotes::install_github("nset-ornl/wbstats")
+remotes::install_github("pachadotdev/wbstats")
 ```
 
-Downloading data from the World Bank
-====================================
+# Downloading data from the World Bank
 
 ``` r
 library(wbstats)
@@ -38,19 +37,18 @@ library(wbstats)
 d <- wb_data("SP.POP.TOTL")
     
 head(d)
-#> # A tibble: 6 x 9
+#> # A tibble: 6 × 9
 #>   iso2c iso3c country    date SP.POP.TOTL unit  obs_status footnote last_updated
 #>   <chr> <chr> <chr>     <dbl>       <dbl> <chr> <chr>      <chr>    <date>      
-#> 1 AF    AFG   Afghanis~  2019    38041754 <NA>  <NA>       <NA>     2020-07-01  
-#> 2 AF    AFG   Afghanis~  2018    37172386 <NA>  <NA>       <NA>     2020-07-01  
-#> 3 AF    AFG   Afghanis~  2017    36296400 <NA>  <NA>       <NA>     2020-07-01  
-#> 4 AF    AFG   Afghanis~  2016    35383128 <NA>  <NA>       <NA>     2020-07-01  
-#> 5 AF    AFG   Afghanis~  2015    34413603 <NA>  <NA>       <NA>     2020-07-01  
-#> 6 AF    AFG   Afghanis~  2014    33370794 <NA>  <NA>       <NA>     2020-07-01
+#> 1 AF    AFG   Afghanis…  2024    42647492 <NA>  <NA>       <NA>     2025-07-01  
+#> 2 AF    AFG   Afghanis…  2023    41454761 <NA>  <NA>       <NA>     2025-07-01  
+#> 3 AF    AFG   Afghanis…  2022    40578842 <NA>  <NA>       <NA>     2025-07-01  
+#> 4 AF    AFG   Afghanis…  2021    40000412 <NA>  <NA>       <NA>     2025-07-01  
+#> 5 AF    AFG   Afghanis…  2020    39068979 <NA>  <NA>       <NA>     2025-07-01  
+#> 6 AF    AFG   Afghanis…  2019    37856121 <NA>  <NA>       <NA>     2025-07-01
 ```
 
-Hans Rosling’s Gapminder using `wbstats`
-----------------------------------------
+## Hans Rosling’s Gapminder using `wbstats`
 
 ``` r
 library(tidyverse)
@@ -98,8 +96,7 @@ d %>%
 
 ![](man/figures/readme-chart-1.png)
 
-Using `ggplot2` to map `wbstats` data
--------------------------------------
+## Using `ggplot2` to map `wbstats` data
 
 ``` r
 library(rnaturalearth)
