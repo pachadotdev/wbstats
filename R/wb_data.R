@@ -4,11 +4,11 @@
 #' This function downloads the requested information using the World Bank API
 #'
 #' @param indicator Character vector of indicator codes. These codes correspond
-#' to the `indicator_id` column from the `indicators` tibble of [wb_cache()], [wb_cachelist], or
+#' to the `indicator_id` column from the `indicators` data frame of [wb_cache()], [wb_cachelist], or
 #'  the result of running [wb_indicators()] directly
 #' @param country Character vector of country, region, or special value codes for the
 #' locations you want to return data for. Permissible values can be found in the
-#' countries tibble in [wb_cachelist] or by running [wb_countries()] directly.
+#' countries data frame in [wb_cachelist] or by running [wb_countries()] directly.
 #' Specifically, values listed in the following fields `iso3c`, `iso2c`, `country`,
 #' `region`, `admin_region`, `income_level` and all of the `region_*`,
 #' `admin_region_*`, `income_level_*`, columns. As well as the following special values
@@ -37,7 +37,7 @@
 #' @param mrnev Numeric. The number of Most Recent Non Empty Values to return. A replacement
 #' of `start_date` and `end_date`, similar in behavior as `mrv` but excludes locations with missing values.
 #' Useful in conjuction with `freq`
-#' @param cache List of tibbles returned from [wb_cache()]. If omitted, [wb_cachelist] is used
+#' @param cache List of data frames returned from [wb_cache()]. If omitted, [wb_cachelist] is used
 #' @param freq Character String. For fetching quarterly ("Q"), monthly("M") or yearly ("Y") values.
 #' Useful for querying high frequency data.
 #' @param gapfill Logical. If `TRUE` fills in missing values by carrying forward the last
@@ -49,7 +49,7 @@
 #' Default is `FALSE`
 #' @inheritParams wb_cache
 #'
-#' @return a [tibble][tibble::tibble-package] of all available requested data.
+#' @return a `data.frame` of all available requested data.
 #'
 #' @details
 #' ## `obs_status` column
@@ -58,7 +58,6 @@
 #' that data point is "forecast".
 #'
 #' @export
-#' @importFrom rlang .data
 #' @md
 #'
 #' @examples
@@ -244,10 +243,11 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
                    )
   d_list <- d_list[sapply(d_list, is.data.frame)]
 
-  d <- dplyr::bind_rows(d_list)
+  d <- data.table::rbindlist(d_list, fill = TRUE)
+  data.table::setDF(d)
   if(!is.data.frame(d) | nrow(d) == 0) {
-    warning("No data was returned for your query. Returning an empty tibble")
-    return(tibble::tibble())
+    warning("No data was returned for your query. Returning an empty data frame")
+    return(data.frame())
   }
 
   d <- format_wb_data(d, end_point = "data")
@@ -257,17 +257,13 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
     # country names are not replaced with with cached versions b/c
     # some country names are subnational values where the iso3c and iso2c would
     # be the same value across mutliple subnational units
-    d <- d %>%
-      dplyr::mutate(
-        iso3c = as.character(.data$iso3c),
-        iso2c = as.character(.data$iso2c),
-        iso3c = dplyr::if_else(is.na(.data$iso3c), .data$iso2c, .data$iso3c)
-      ) %>%
-      dplyr::select(-tidyselect::any_of("iso2c")) %>%
-      dplyr::left_join(
-        dplyr::select(cache$countries, tidyselect::all_of(c("iso3c", "iso2c"))),
-        by = "iso3c"
-      )
+    d$iso3c <- as.character(d$iso3c)
+    d$iso2c <- as.character(d$iso2c)
+    d$iso3c <- ifelse(is.na(d$iso3c), d$iso2c, d$iso3c)
+    d$iso2c <- NULL
+
+    country_lookup <- unique(cache$countries[, c("iso3c", "iso2c")])
+    d$iso2c <- country_lookup$iso2c[match(d$iso3c, country_lookup$iso3c)]
   }
 
 
@@ -278,8 +274,8 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
   }
 
   if(nrow(d) == 0) {
-    warning("No data was returned for your query. Returning an empty tibble")
-    return(tibble::tibble())
+    warning("No data was returned for your query. Returning an empty data frame")
+    return(data.frame())
   }
 
   if (return_wide) {
@@ -300,7 +296,10 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
     }
 
     d <- d[ , cols_to_keep]
-    d <- tidyr::spread(d, key = "indicator_id", value = "value")
+
+    d <- data.table::as.data.table(d)
+    d <- data.table::dcast(d, ... ~ indicator_id, value.var = "value")
+    data.table::setDF(d)
 
     # column labels
     for (i in 1:nrow(ind_names)) {
@@ -321,11 +320,8 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
     }
 
     indicator_cols <- setdiff(names(d), c(context_cols, extra_cols))
-    d <- dplyr::select(d,
-            tidyselect::all_of(context_cols),
-            tidyselect::all_of(indicator_cols),
-            dplyr::everything()
-          )
+    remaining_cols <- setdiff(names(d), c(context_cols, indicator_cols))
+    d <- d[ , c(context_cols, indicator_cols, remaining_cols)]
 
   } else {
     # these columns are reordered for readability

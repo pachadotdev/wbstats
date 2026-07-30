@@ -10,7 +10,6 @@ wb_end_point <- function(end_point, lang) {
   format_wb_data(d, end_point = end_point)
 }
 
-
 #' World Bank Information End Points
 #'
 #' These functions are simple wrappers around the various useful API end points
@@ -18,7 +17,7 @@ wb_end_point <- function(end_point, lang) {
 #' interested in when using [wb_data()]
 #'
 #' @inheritParams wb_cache
-#' @return A `tibble` of information about the end point
+#' @return A `data.frame` of information about the end point
 #' @name wb_end_point_info
 #' @seealso [wb_cache()]
 #' @md
@@ -81,7 +80,7 @@ wb_languages <- function() {
 
 #' Download Avialable Indicators from the World Bank
 #'
-#' This function returns a [tibble][tibble::tibble-package] of indicator IDs and related information
+#' This function returns a `data.frame` of indicator IDs and related information
 #' that are available for download from the World Bank API
 #'
 #' @inheritParams wb_cache

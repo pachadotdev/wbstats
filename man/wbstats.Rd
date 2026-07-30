@@ -23,6 +23,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Mauricio Vargas Sepulveda \email{m.vargas.sepulveda@gmail.com} (\href{https://orcid.org/0000-0003-1017-7574}{ORCID})
   \item Jesse Piburn \email{piburnjo@ornl.gov} (\href{https://orcid.org/0000-0003-4967-7912}{ORCID})
 }
 

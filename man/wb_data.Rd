@@ -21,12 +21,12 @@ wb_data(
 }
 \arguments{
 \item{indicator}{Character vector of indicator codes. These codes correspond
-to the \code{indicator_id} column from the \code{indicators} tibble of \code{\link[=wb_cache]{wb_cache()}}, \link{wb_cachelist}, or
+to the \code{indicator_id} column from the \code{indicators} data frame of \code{\link[=wb_cache]{wb_cache()}}, \link{wb_cachelist}, or
 the result of running \code{\link[=wb_indicators]{wb_indicators()}} directly}
 
 \item{country}{Character vector of country, region, or special value codes for the
 locations you want to return data for. Permissible values can be found in the
-countries tibble in \link{wb_cachelist} or by running \code{\link[=wb_countries]{wb_countries()}} directly.
+countries data frame in \link{wb_cachelist} or by running \code{\link[=wb_countries]{wb_countries()}} directly.
 Specifically, values listed in the following fields \code{iso3c}, \code{iso2c}, \code{country},
 \code{region}, \code{admin_region}, \code{income_level} and all of the \verb{region_*},
 \verb{admin_region_*}, \verb{income_level_*}, columns. As well as the following special values
@@ -63,7 +63,7 @@ Useful in conjuction with \code{freq}}
 of \code{start_date} and \code{end_date}, similar in behavior as \code{mrv} but excludes locations with missing values.
 Useful in conjuction with \code{freq}}
 
-\item{cache}{List of tibbles returned from \code{\link[=wb_cache]{wb_cache()}}. If omitted, \link{wb_cachelist} is used}
+\item{cache}{List of data frames returned from \code{\link[=wb_cache]{wb_cache()}}. If omitted, \link{wb_cachelist} is used}
 
 \item{freq}{Character String. For fetching quarterly ("Q"), monthly("M") or yearly ("Y") values.
 Useful for querying high frequency data.}
@@ -84,7 +84,7 @@ all data returns have support for langauges other than english. If the specific
 return does not support your requested language by default it will return \code{NA}.}
 }
 \value{
-a \link[tibble:tibble-package]{tibble} of all available requested data.
+a \code{data.frame} of all available requested data.
 }
 \description{
 This function downloads the requested information using the World Bank API

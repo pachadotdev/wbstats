@@ -8,7 +8,7 @@
 An object of class \code{list} of length 8.
 }
 \usage{
-wb_cachelist
+data(wb_cachelist)
 }
 \description{
 This data is a cached result of the \code{\link{wb_cache}} function.

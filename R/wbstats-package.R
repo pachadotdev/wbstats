@@ -4,6 +4,5 @@
 #' available from the World Bank API including; support for mutliple languages,
 #' access to annual, quarterly, and monthly data.
 #'
-#' @importFrom tibble tibble
 #' @name wbstats
 "_PACKAGE"

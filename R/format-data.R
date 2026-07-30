@@ -6,12 +6,15 @@ format_wb_tidy_names <- function(x, end_point) {
   local_patterns <- wb_api_name_patterns[[end_point]]
   all_patterns <- c(global_patterns, local_patterns)
 
+  x_trim    <- trimws(x)
+  x_lower   <- tolower(x_trim)
 
-  # this can all be replaces by janitor::clean_names
-  x_trim    <- stringr::str_trim(x)
-  x_lower   <- stringr::str_to_lower(x_trim)
-  x_replace <- stringr::str_replace_all(x_lower, all_patterns)
-  x_tidy    <- tibble::tidy_names(x_replace, quiet = TRUE)
+  x_replace <- x_lower
+  for (i in seq_along(all_patterns)) {
+    x_replace <- gsub(names(all_patterns)[i], all_patterns[[i]], x_replace)
+  }
+
+  x_tidy <- make.unique(x_replace, sep = "_")
 
   x_tidy
 }
@@ -27,7 +30,7 @@ format_wb_tidy_names <- function(x, end_point) {
   # skip date column b/c it has its own parsing function
   col_index <- setdiff(col_index, which(names(x) == "date"))
 
-  x <- format_wb_func(x, readr::parse_guess,
+  x <- format_wb_func(x, format_wb_guess_type,
                       col_index = col_index)
 
   # still need to make sure that blanks are turned to NAs
@@ -55,7 +58,13 @@ format_wb_tidy_names <- function(x, end_point) {
                         col_index = col_index)
   }
 
-  tibble::as_tibble(x)
+  row.names(x) <- NULL
+  x
+}
+
+#' @noRd
+format_wb_guess_type <- function(x, ...) {
+  utils::type.convert(x, as.is = TRUE)
 }
 
 

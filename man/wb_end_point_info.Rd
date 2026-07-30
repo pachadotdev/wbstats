@@ -33,7 +33,7 @@ all data returns have support for langauges other than english. If the specific
 return does not support your requested language by default it will return \code{NA}.}
 }
 \value{
-A \code{tibble} of information about the end point
+A \code{data.frame} of information about the end point
 }
 \description{
 These functions are simple wrappers around the various useful API end points

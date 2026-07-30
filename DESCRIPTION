@@ -15,37 +15,28 @@ Authors@R:
              role = "aut",
              email = "piburnjo@ornl.gov",
              comment = c(ORCID = "0000-0003-4967-7912")),
-      person(family = "The World Bank",
+       person(family = "The World Bank",
              role = "dtc")
      )
 Description: Search and download data from the World Bank Data API.
-License: Apache License (>= 2)
+License: Apache License 2.0
 URL: https://github.com/pachadotdev/wbstats
 BugReports: https://github.com/pachadotdev/wbstats/issues
-Depends:
+Depends: 
     R (>= 3.2)
-Imports:
-    dplyr,
+Imports: 
+    data.table,
     httr,
-    jsonlite,
-    lubridate,
-    readr,
-    rlang,
-    stringr,
-    tibble,
-    tidyr,
-    magrittr,
-    tidyselect
-Suggests:
+    jsonlite
+Suggests: 
     ggplot2,
     knitr,
     markdown,
     rmarkdown,
     testthat (>= 3.0.0),
-    vcr
-VignetteBuilder: 
-    knitr
+    vcr, tinytest
+VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: TRUE
-RoxygenNote: 7.3.2
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.0.0

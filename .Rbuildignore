@@ -1,16 +1,8 @@
-^.*\.Rproj$
-^\.Rproj\.user$
 ^data-raw$
-^README\.Rmd$
 ^README-.*\.png$
 ^cran-comments\.md$
-^_pkgdown\.yml$
 ^docs$
-^pkgdown$
-^doc$
-^Meta$
-^talks$
-^LICENSE\.md$
+^LICENSE\.txt$
 ^TODOs\.md$
 ^\.github$
 ^CRAN-SUBMISSION$

@@ -31,7 +31,7 @@ if \code{TRUE}, case is ignored during matching. Default is \code{TRUE}}
 \item{...}{Any additional \code{\link[=grep]{grep()}} agruments you which to pass}
 }
 \value{
-a \link[tibble:tibble-package]{tibble} with indicators that match the search pattern.
+a \code{data.frame} with indicators that match the search pattern.
 }
 \description{
 This function allows finds indicators that match a search term and returns

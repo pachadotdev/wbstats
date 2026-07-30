@@ -32,8 +32,7 @@ format_wb_dates <- function(df) {
 
   if (length(annual_obs_index) > 0) {
 
-    annual_date <- as.Date(date_vec[annual_obs_index], "%Y")
-    annual_date_values <- lubridate::floor_date(annual_date, unit = "year")
+    annual_date_values <- as.Date(paste0(date_vec[annual_obs_index], "-01-01"))
 
     new_date_vec[annual_obs_index] <- annual_date_values
     obs_resolution[annual_obs_index] <- "annual"
@@ -46,8 +45,10 @@ format_wb_dates <- function(df) {
 
   if (length(monthly_obs_index) > 0) {
 
-    monthly_date <- lubridate::ydm(gsub("M", "01", date_vec[monthly_obs_index]))
-    monthly_date_values <- lubridate::floor_date(monthly_date, unit = "month")
+    monthly_str <- date_vec[monthly_obs_index]
+    monthly_year <- substr(monthly_str, 1, 4)
+    monthly_month <- substr(monthly_str, 6, 7)
+    monthly_date_values <- as.Date(paste0(monthly_year, "-", monthly_month, "-01"))
 
     new_date_vec[monthly_obs_index] <- monthly_date_values
     obs_resolution[monthly_obs_index] <- "monthly"
@@ -62,13 +63,11 @@ format_wb_dates <- function(df) {
 
     # takes a little more work
     qtr_obs <- strsplit(date_vec[quarterly_obs_index], "Q")
-    qtr_df <- as.data.frame(matrix(unlist(qtr_obs), ncol = 2, byrow = TRUE), stringsAsFactors = FALSE)
-    names(qtr_df) <- c("year", "qtr")
-    qtr_df$month <- as.numeric(qtr_df$qtr) * 3 # to turn into the max month
-    qtr_format_vec <- paste0(qtr_df$year, "01", qtr_df$month) # 01 acts as a dummy day
+    qtr_year <- vapply(qtr_obs, `[`, character(1), 1)
+    qtr_num  <- as.numeric(vapply(qtr_obs, `[`, character(1), 2))
+    qtr_start_month <- (qtr_num - 1) * 3 + 1 # first month of the quarter
 
-    quarterly_date <- lubridate::ydm(qtr_format_vec)
-    quarterly_date_values <- lubridate::floor_date(quarterly_date, unit = "quarter")
+    quarterly_date_values <- as.Date(paste0(qtr_year, "-", sprintf("%02d", qtr_start_month), "-01"))
 
     new_date_vec[quarterly_obs_index] <- quarterly_date_values
     obs_resolution[quarterly_obs_index] <- "quarterly"
