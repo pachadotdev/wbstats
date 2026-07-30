@@ -35,6 +35,7 @@ library(wbstats)
 d <- wb_data("SP.POP.TOTL")
     
 head(d)
+
 #> # A tibble: 6 × 9
 #>   iso2c iso3c country    date SP.POP.TOTL unit  obs_status footnote last_updated
 #>   <chr> <chr> <chr>     <dbl>       <dbl> <chr> <chr>      <chr>    <date>      
@@ -51,6 +52,7 @@ head(d)
 ``` r
 library(wbstats)
 library(data.table)
+library(tinyplot)
 
 my_indicators <- c(
   life_exp = "SP.DYN.LE00.IN",
