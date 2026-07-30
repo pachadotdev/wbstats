@@ -1,4 +1,3 @@
-
 global_patterns <- c("\\." = "_",
                      "_value|\\.value"    = "",
                      "_name|\\.name"      = "",

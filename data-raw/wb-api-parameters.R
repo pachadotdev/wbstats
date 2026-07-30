@@ -1,4 +1,3 @@
-
 wb_api_parameters <- list(
   base_url     = "https://api.worldbank.org/",
   version      = "v2",
