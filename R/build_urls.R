@@ -17,10 +17,10 @@ build_wb_url <- function(base_url, indicator, path_list, query_list) {
   if(is.null(names(indicator))) names(indicator_path) <- indicator
   else names(indicator_path) <- names(indicator)
 
-  out_url <- sapply(indicator_path, FUN = function(ind) {
+  out_url <- vapply(indicator_path, FUN = function(ind) {
     url_path <- c(url_path, ind)
     httr::modify_url(base_url, path = url_path, query = query_list)
-  }
+  }, FUN.VALUE = character(1)
   )
 
   out_url

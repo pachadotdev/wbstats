@@ -1,14 +1,13 @@
-# wbstats 1.1
+# wbstats 1.2.0
 
-## Changes:
 * Removed the `dplyr`, `tidyr`, `readr`, `tidyselect`, `tibble`, `rlang`, and `magrittr`
   dependencies in favor of `data.table` (for row-binding and reshaping data) and base R.
 * Removed the `stringr` and `lubridate` dependencies in favor of base R string and date
   handling.
-* Functions now return plain `data.frame` objects instead of `tibble`s.
-* The re-exported `%>%` pipe operator has been removed. Use the base R pipe (`|>`) instead.
+* Functions now return `data.table` objects instead of `tibble`s.
 
-# wbstats 1.0.3
+# wbstats 1.1.0
+
 * Fixes issues with examples taking too long to run
 
 # wbstats 1.0.2

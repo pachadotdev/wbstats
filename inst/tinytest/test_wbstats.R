@@ -27,9 +27,9 @@ if (requireNamespace("vcr", quietly = TRUE)) {
     expect_true(all(unique(na.omit(df$iso3c)) == "BRA"))
   })
 
-  # gdp for all countries (all dates) - example
-  vcr::use_cassette(name = "wb_gdp_all", {
-    df <- wb_data("NY.GDP.MKTP.CD")
+  # gdp for multiple countries - example
+  vcr::use_cassette(name = "wb_gdp_multi", {
+    df <- wb_data("NY.GDP.MKTP.CD", country = c("brazil", "mexico", "chile"), start_date = 2006)
     expect_inherits(df, "data.frame")
     expect_true(nrow(df) > 0)
     expect_true("NY.GDP.MKTP.CD" %in% names(df) || "value" %in% names(df))
@@ -52,8 +52,10 @@ if (requireNamespace("vcr", quietly = TRUE)) {
 
   # multiple indicators (wide) - example
   vcr::use_cassette(name = "wb_multi_indicators", {
-    my_indicators <- c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "SL.UEM.TOTL.ZS", "SP.DYN.CBRT.IN")
-    df <- wb_data(my_indicators)
+    # my_indicators <- c("SP.POP.TOTL", "NY.GDP.MKTP.CD", "SL.UEM.TOTL.ZS", "SP.DYN.CBRT.IN")
+    my_indicators <- c("SP.POP.TOTL", "NY.GDP.MKTP.CD")
+    # df <- wb_data(my_indicators)
+    df <- wb_data(my_indicators, country = c("brazil", "chile", "mexico"), start_date = 2006)
     expect_inherits(df, "data.frame")
     expect_true(any(c("SP.POP.TOTL", "NY.GDP.MKTP.CD") %in% names(df)))
   })

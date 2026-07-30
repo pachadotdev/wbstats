@@ -59,6 +59,24 @@ my_indicators <- c(
 )
 
 d <- wb_data(my_indicators, start_date = 2016)
+
+d2 <- wb_data_coverage(d)
+
+# countries with less than 90% coverage for GDP per capita
+d2[gdp_capita < 90, ]
+
+# countries with less than 90% coverage for any variable
+d2[d2[, do.call(pmin, .SD) < 90, .SDcols = is.numeric]]
+
+#     iso2c  iso3c                   country gdp_capita life_exp   pop
+#    <char> <char>                    <char>      <num>    <num> <num>
+# 1:     ER    ERI                   Eritrea          0      100   100
+# 2:     GI    GIB                 Gibraltar          0      100   100
+# 3:     MF    MAF  St. Martin (French part)          0      100   100
+# 4:     KP    PRK Korea, Dem. People's Rep.          0      100   100
+# 5:     SS    SSD               South Sudan          0      100   100
+# 6:     VG    VGB    British Virgin Islands          0      100   100
+
 d <- merge(d, wb_countries(), "iso3c")
 d <- na.omit(d)
 

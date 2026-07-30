@@ -3,7 +3,7 @@ wb_end_point <- function(end_point, lang) {
 
   get_url <- build_get_url(end_point, lang = lang)
 
-  d <- fetch_wb_url(get_url)
+  d <- as.data.table(fetch_wb_url(get_url))
   d_names <- format_wb_tidy_names(names(d), end_point = end_point)
   names(d) <- d_names
 

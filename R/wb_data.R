@@ -241,21 +241,15 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
                      )
                     }
                    )
-  d_list <- d_list[sapply(d_list, is.data.frame)]
+  d_list <- d_list[vapply(d_list, is.data.frame, logical(1))]
 
-  d <- data.table::rbindlist(d_list, fill = TRUE)
-  data.table::setDF(d)
+  d <- rbindlist(d_list, fill = TRUE)
   if(!is.data.frame(d) | nrow(d) == 0) {
     warning("No data was returned for your query. Returning an empty data frame")
-    return(data.table::data.table())
+    return(data.table())
   }
 
   d <- format_wb_data(d, end_point = "data")
-  # format_wb_data() returns a data.table; downgrade back to a plain
-  # data.frame here so all of the base-R bracket indexing below (which
-  # assumes data.frame `[, cols]` selection semantics) keeps working, then
-  # convert to a data.table once at the very end, right before returning
-  data.table::setDF(d)
 
   if (any(is.na(d$iso3c))) {
 
@@ -267,7 +261,7 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
     d$iso3c <- ifelse(is.na(d$iso3c), d$iso2c, d$iso3c)
     d$iso2c <- NULL
 
-    country_lookup <- unique(as.data.frame(cache$countries)[, c("iso3c", "iso2c")])
+    country_lookup <- unique(as.data.table(cache$countries)[, c("iso3c", "iso2c"), with = FALSE])
     d$iso2c <- country_lookup$iso2c[match(d$iso3c, country_lookup$iso3c)]
   }
 
@@ -280,14 +274,14 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
 
   if(nrow(d) == 0) {
     warning("No data was returned for your query. Returning an empty data frame")
-    return(data.table::data.table())
+    return(data.table())
   }
 
   if (return_wide) {
     context_cols <- c("iso2c", "iso3c", "country", "date")
     extra_cols <- c("unit", "obs_status","footnote", "last_updated")
 
-    ind_names <- as.data.frame(unique(d[, c("indicator", "indicator_id")]))
+    ind_names <- unique(d[, c("indicator", "indicator_id"), with = FALSE])
 
     # the decimal column is dropped here b/c support for scale=TRUE was removed
     cols_to_keep <- setdiff(names(d), c("indicator", "decimal"))
@@ -300,11 +294,9 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
       cols_to_keep <- setdiff(cols_to_keep, extra_cols)
     }
 
-    d <- d[ , cols_to_keep]
+    d <- d[ , cols_to_keep, with = FALSE]
 
-    d <- data.table::as.data.table(d)
-    d <- data.table::dcast(d, ... ~ indicator_id, value.var = "value")
-    data.table::setDF(d)
+    d <- dcast(d, ... ~ indicator_id, value.var = "value")
 
     # column labels
     for (i in 1:nrow(ind_names)) {
@@ -326,7 +318,7 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
 
     indicator_cols <- setdiff(names(d), c(context_cols, extra_cols))
     remaining_cols <- setdiff(names(d), c(context_cols, indicator_cols))
-    d <- d[ , c(context_cols, indicator_cols, remaining_cols)]
+    d <- d[ , c(context_cols, indicator_cols, remaining_cols), with = FALSE]
 
   } else {
     # these columns are reordered for readability
@@ -334,13 +326,11 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
                    "value", "unit", "obs_status", "footnote", "last_updated")
     col_order2 <- col_order[col_order %in% names(d)]
 
-    d <- d[ , col_order2]
+    d <- d[ , col_order2, with = FALSE]
   }
 
   if (date_as_class_date)  d <- format_wb_dates(d)
   else if (!any(grepl("M|Q", d$date, ignore.case = TRUE))) d$date <- as.numeric(d$date)
-
-  data.table::setDT(d)
 
   d
 }

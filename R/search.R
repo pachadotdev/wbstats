@@ -38,11 +38,11 @@ wb_search <- function(pattern, fields = c("indicator_id", "indicator", "indicato
                       extra = FALSE, cache, ignore.case = TRUE, ...){
 
   if (missing(cache)) cache <- wbstats::wb_cachelist
-  ind_cache <- as.data.frame(cache$indicators)
+  ind_cache <- as.data.table(cache$indicators)
 
-  match_index <- sort(unique(unlist(sapply(fields, FUN = function(i)
-    grep(pattern, ind_cache[, i], ignore.case = ignore.case, ...), USE.NAMES = FALSE)
-  )))
+  match_index <- sort(unique(unlist(lapply(fields, FUN = function(i)
+    grep(pattern, ind_cache[[i]], ignore.case = ignore.case, ...)
+  ))))
 
   if (length(match_index) == 0) warning(paste0("no matches were found for the search term ", pattern,
                                                ". Returning an empty data frame."))
@@ -50,11 +50,8 @@ wb_search <- function(pattern, fields = c("indicator_id", "indicator", "indicato
   if (extra) {
     match_df <- ind_cache[match_index, ]
   } else {
-    match_df <- ind_cache[match_index, c("indicator_id", "indicator", "indicator_desc")]
+    match_df <- ind_cache[match_index, c("indicator_id", "indicator", "indicator_desc"), with = FALSE]
   }
-
-  row.names(match_df) <- NULL
-  data.table::setDT(match_df)
 
   match_df
 }

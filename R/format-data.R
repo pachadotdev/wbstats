@@ -19,11 +19,8 @@ format_wb_tidy_names <- function(x, end_point) {
   x_tidy
 }
 
-
-
 #' @noRd
-   format_wb_data <- function(x, end_point) {
-
+format_wb_data <- function(x, end_point) {
   x_field_types <- format_wb_get_col_type(x)
   col_index <- which(x_field_types %in% "character")
 
@@ -58,9 +55,7 @@ format_wb_tidy_names <- function(x, end_point) {
                         col_index = col_index)
   }
 
-  row.names(x) <- NULL
-
-  data.table::setDT(x)
+  x
 }
 
 #' @noRd
@@ -71,7 +66,7 @@ format_wb_guess_type <- function(x, ...) {
 
 #' @noRd
 format_wb_get_col_type <- function(x, ...) {
-  x_type <- sapply(seq(ncol(x)), FUN = function(i) typeof(x[ ,i]))
+  x_type <- vapply(seq_along(x), FUN = function(i) typeof(x[[i]]), FUN.VALUE = character(1))
   names(x_type) <- names(x)
   x_type
 }
@@ -106,10 +101,9 @@ format_wb_func <- function(df, func, col_index,  ...) {
 
   if(missing(col_index)) col_index <- seq_len(ncol(df))
 
-  df[, col_index] <- lapply(col_index, FUN = function(i) {
-    x<- df[, i]
-    func(x, ...)
-  })
+  for (i in col_index) {
+    set(df, j = i, value = func(df[[i]], ...))
+  }
 
   df
 }
