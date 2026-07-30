@@ -116,6 +116,32 @@ fetch_wb_url <- function(url_string, indicator) {
 }
 
 #' @noRd
+# retries transient failures (connection timeouts/resets and 5xx server
+# errors) up to `max_attempts` times with exponential backoff. 4xx client
+# errors are not retried since they will not succeed on a subsequent
+# attempt (e.g. the "Bad Request" footnote issue handled separately below)
+wb_api_get <- function(url_string, ua, max_attempts = 5) {
+
+  get_return <- tryCatch(
+    httr::RETRY(
+      "GET", url_string, ua, httr::timeout(20),
+      times        = max_attempts,
+      terminate_on = 400:499,
+      quiet        = TRUE
+    ),
+    error = function(e) e
+  )
+
+  if (inherits(get_return, "error")) {
+    stop(sprintf("World Bank API request failed after %s attempts\nmessage: %s\nurl: %s",
+                 max_attempts, conditionMessage(get_return), url_string),
+         call. = FALSE)
+  }
+
+  get_return
+}
+
+#' @noRd
 fetch_wb_url_content <- function(url_string, indicator) {
 
   indicator <- if_missing(indicator)
@@ -125,7 +151,7 @@ fetch_wb_url_content <- function(url_string, indicator) {
 
   # add api_token here if/when that is supported
 
-  get_return <- httr::GET(url_string, ua, httr::timeout(20))
+  get_return <- wb_api_get(url_string, ua)
 
   # there is a known issue with some sources without metadata failing when
   # the footnote field is requested. Since we can't know ahead of time
@@ -137,7 +163,7 @@ fetch_wb_url_content <- function(url_string, indicator) {
 
     if (error_status$reason == "Bad Request" & grepl(footnote_pattern, url_string)) {
       url_string_retry <- gsub(footnote_pattern, "footnote=n", url_string)
-      get_return_retry <- httr::GET(url_string_retry, ua, httr::timeout(20))
+      get_return_retry <- wb_api_get(url_string_retry, ua)
 
       # if this one returns successfully, then replace the original
       if (!httr::http_error(get_return_retry)) get_return <- get_return_retry

@@ -56,7 +56,7 @@ wb_data(
 }
 
 \value{
-a \code{data.frame} of all available requested data.
+a \code{data.table}/\code{data.frame} of all available requested data.
 }
 
 \description{

@@ -74,4 +74,3 @@ wb_api_name_patterns <- list(
   query           = query_patterns,
   data            = data_patterns
 )
-

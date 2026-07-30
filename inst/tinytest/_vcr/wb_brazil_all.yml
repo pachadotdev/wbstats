@@ -5,36 +5,26 @@ http_interactions:
   response:
     status: 200
     headers:
+      date: Thu, 30 Jul 2026 10:12:37 GMT
+      content-type: application/json;charset=utf-8
+      cf-ray: a2339607b8c30339-LHR
+      cf-cache-status: HIT
+      access-control-allow-origin: '*'
+      age: '9'
+      cache-control: public, max-age=86400
+      content-encoding: gzip
+      expires: Fri, 31 Jul 2026 10:12:37 GMT
+      last-modified: Thu, 30 Jul 2026 10:12:28 GMT
+      server: cloudflare
+      vary: accept-encoding
       access-control-allow-headers: X-Requested-With
       access-control-allow-methods: GET
-      access-control-allow-origin: '*'
-      cache-control: public, must-revalidate, max-age=2590682
-      cf-cache-status: DYNAMIC
-      cf-ray: 97e3e29dba12ab2a-YYZ
-      content-encoding: gzip
-      content-type: application/json;charset=utf-8
-      date: Sat, 13 Sep 2025 01:31:28 GMT
-      expires: Mon, 13 Oct 2025 01:09:30 GMT
-      last-modified: Sat, 13 Sep 2025 01:09:29 GMT
       request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
-      server: cloudflare
-      set-cookie:
-      - dataapi.cookie=!7gNk1M+rmQlw6RMNVLlZbZB8PNGQEQO9f3az+B4X7d94hqjw6zBhGUznF0tywdM36WJiyWFGcaaBYg==;
-        path=/; Httponly
-      - TS01b02907=01ebd1be3b7d08f87c1cf81ad48eafa52c1249cb8dcebaf605faf23f5143170490f9d25fe204b3f3a6420578000fb74c1d94b8b603b1fe30f0fc268ca08c31e7cd4fcdcca3;
-        Path=/;
-      - BIGipServerdataapi.sfarm=!X8fWOG416cI78PdVBIJqYj1xclWYzvH2xlc9hq4ivdV3V2jmuZdYIQI1Exzs59M/zAtrjXX9GQj5jkE=;
-        path=/; Httponly
-      - TS01fa65e4=01359ee9765e555513db8e4c3b1e259faa4cc2a1f290758902b37640534842502a9fa5f306d39b107640fbf7abb61d74d4f53a35271f3d492143fc5de385b39f5ec548807398b2040071ec544f30e4e4465cbf7f1b2895c4dda3e34071f6d17441923f4f8d;
-        Path=/;
-      - __cf_bm=gIofO23PAycw4kB0IGQEbMboxolUlgWnroQfsKKusAQ-1757725769-1.0.1.1-.sfyqhWi243y1m.QQgUQX.7s3Vt6Ykj5VslS655SYAiXWmEO3kDCF5LxrlSTJMBYP8eiOcafAk.XRwj0xyJvTY1ngtlKhdKH0ZPhF8Tl.wY;
-        path=/; expires=Sat, 13-Sep-25 01:39:29 GMT; domain=.worldbank.org; HttpOnly
-      - _cfuvid=SgdsZRDCDS2RkkTxlmFBYYMvxd021l3B_h7VTFfhW6Q-1757725769730-0.0.1.1-604800000;
-        path=/; domain=.worldbank.org; HttpOnly
-      vary: accept-encoding
+      x-powered-by: ASP.NET
     body:
-      string: '[{"page":1,"pages":1,"per_page":20000,"total":65,"sourceid":"2","lastupdated":"2025-07-01"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
-        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2024","value":2179412080828.59,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":66,"sourceid":"2","lastupdated":"2026-07-13"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2025","value":2279920092492.13,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2024","value":2185821610689.31,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2023","value":2191131765684.63,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2022","value":1951923942083.32,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2021","value":1670647398904.9,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
@@ -99,5 +89,5 @@ http_interactions:
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"1962","value":19231747851.5332,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"1961","value":17275940449.3837,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"1960","value":17030465539.3906,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
-  recorded_at: 2025-09-13 01:31:28
-recorded_with: VCR-vcr/2.0.0
+  recorded_at: 2026-07-30 10:12:37
+recorded_with: VCR-vcr/2.1.0

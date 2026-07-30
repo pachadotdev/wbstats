@@ -29,7 +29,7 @@ wb_search(
 }
 
 \value{
-a \code{data.frame} with indicators that match the search pattern.
+a \code{data.table}/\code{data.frame} with indicators that match the search pattern.
 }
 
 \description{

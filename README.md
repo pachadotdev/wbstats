@@ -49,79 +49,35 @@ head(d)
 ## Hans Rosling’s Gapminder using `wbstats`
 
 ``` r
-library(tidyverse)
 library(wbstats)
+library(data.table)
 
 my_indicators <- c(
-  life_exp = "SP.DYN.LE00.IN", 
-  gdp_capita ="NY.GDP.PCAP.CD", 
+  life_exp = "SP.DYN.LE00.IN",
+  gdp_capita ="NY.GDP.PCAP.CD",
   pop = "SP.POP.TOTL"
-  )
+)
 
 d <- wb_data(my_indicators, start_date = 2016)
+d <- merge(d, wb_countries(), "iso3c")
+d <- na.omit(d)
 
-d %>%
-  left_join(wb_countries(), "iso3c") %>%
-  ggplot() +
-  geom_point(
-    aes(
-      x = gdp_capita, 
-      y = life_exp, 
-      size = pop, 
-      color = region
-      )
-    ) +
-  scale_x_continuous(
-    labels = scales::dollar_format(),
-    breaks = scales::log_breaks(n = 10)
-    ) +
-  coord_trans(x = 'log10') +
-  scale_size_continuous(
-    labels = scales::number_format(scale = 1/1e6, suffix = "m"),
-    breaks = seq(1e8,1e9, 2e8),
-    range = c(1,20)
-    ) +
-  theme_minimal() +
-  labs(
-    title = "An Example of Hans Rosling's Gapminder using wbstats",
-    x = "GDP per Capita (log scale)",
-    y = "Life Expectancy at Birth",
-    size = "Population",
-    color = NULL,
-    caption = "Source: World Bank"
-  ) 
+png(file="man/figures/readme-gdppc-vs-lifexp.png", width = 900, height = 600)
+tinyplot(
+  life_exp ~ gdp_capita | region,
+  data = d,
+  cex = d$pop,
+  pch = 19,
+  alpha = 0.7,
+  palette = "tableau",
+  log = "x",
+  xaxl = "$",
+  main = "An Example of Hans Rosling's Gapminder using wbstats",
+  xlab = "GDP per Capita (log scale)",
+  ylab = "Life Expectancy at Birth",
+  cap = "Source: World Bank"
+)
+dev.off()
 ```
 
-![](man/figures/readme-chart-1.png)
-
-## Using `ggplot2` to map `wbstats` data
-
-``` r
-library(rnaturalearth)
-library(tidyverse)
-library(wbstats)
-
-ind <- "SL.EMP.SELF.ZS"
-indicator_info <- filter(wb_cachelist$indicators, indicator_id == ind)
-
-ne_countries(returnclass = "sf") %>%
-  left_join(
-    wb_data(
-      c(self_employed = ind), 
-         mrnev = 1
-          ),
-    c("iso_a3" = "iso3c")
-  ) %>%
-  filter(iso_a3 != "ATA") %>% # remove Antarctica
-  ggplot(aes(fill = self_employed)) +
-  geom_sf() +
-  scale_fill_viridis_c(labels = scales::percent_format(scale = 1)) +
-  theme(legend.position="bottom") +
-  labs(
-    title = indicator_info$indicator,
-    fill = NULL,
-    caption = paste("Source:", indicator_info$source_org) 
-  )
-```
-
-<img src="man/figures/ggplot2-1.png" style="display: block; margin: auto;" />
+![](man/figures/readme-gdppc-vs-lifexp.png)

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wbstats documentation • wbstats</title><link rel="stylesheet" href="menu.css"><link rel="stylesheet" href="content.css"><!-- MathJax Configuration --><script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script><script id="MathJax-script" async src="js/tex-svg.js"></script></head><body>
+<div class="main-container">
+<div id="menu">
+  <div>
+    <img src="man/figures/logo.svg" align="center" height="139" alt="wbstats logo"></div>
+
+  <div class="search-container">
+    <input type="text" id="search-box" placeholder="Search..."></div>
+
+  <div class="search-container">
+    <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">Toggle theme</button>
+    <button id="font-decrease" title="Decrease font size" aria-label="Decrease font size">A-</button>
+    <button id="font-increase" title="Increase font size" aria-label="Increase font size">A+</button>
+  </div>
+
+  <div class="submenu">
+    <label style="border-bottom: 0;"><a style="padding-left: 0;" href="index.html">Home 🏠</a></label>
+  </div>
+
+
+  <div class="submenu">
+    <label>Functions</label>
+    <a href="reference/wb_countries.html">wb_countries</a>
+    <a href="reference/wb_topics.html">wb_topics</a>
+    <a href="reference/wb_sources.html">wb_sources</a>
+    <a href="reference/wb_regions.html">wb_regions</a>
+    <a href="reference/wb_income_levels.html">wb_income_levels</a>
+    <a href="reference/wb_lending_types.html">wb_lending_types</a>
+    <a href="reference/wb_languages.html">wb_languages</a>
+    <a href="reference/wb_indicators.html">wb_indicators</a>
+    <a href="reference/wb_cache.html">wb_cache</a>
+    <a href="reference/wb_search.html">wb_search</a>
+    <a href="reference/wb_data.html">wb_data</a>
+  </div>
+
+  <div class="submenu">
+    <label>Vignettes</label>
+    <a href="vignettes/wbstats.html">02 - Setup</a>
+  </div>
+
+  <div class="submenu">
+    <label>News</label>
+    <a href="news/index.html">Changelog</a>
+  </div>
+</div>
+<div id="content">
+<div class="content-wrapper">
+        <div class="content-main">
+
+
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+<div id="wbstats-an-r-package-for-searching-and-downloading-data-from-the-world-bank-api" class="section level1">
+<h1>wbstats: An R package for searching and downloading data from the World Bank API <img src="/home/pacha/Documents/wbstats/man/figures/logo.svg" align="right" height="139" alt=""></h1>
+<!-- badges: start -->
+<p><a href="https://CRAN.R-project.org/package=wbstats"><img src="https://www.r-pkg.org/badges/version/wbstats" alt="CRAN status"></a>
+<a href="https://CRAN.R-project.org/package=wbstats"><img src="https://cranlogs.r-pkg.org/badges/wbstats" alt="Monthly"></a>
+<a href="https://lifecycle.r-lib.org/articles/stages.html#maturing"><img src="https://img.shields.io/badge/lifecycle-maturing-blue.svg" alt="Lifecycle: maturing"></a>
+<a href="https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml"><img src="https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a>
+<!-- badges: end --></p>
+<p>You can install the latest release version from CRAN with</p>
+<pre class="r"><code>install.packages("wbstats")</code></pre>
+<p>or</p>
+<p>The latest development version from github with</p>
+<pre class="r"><code>remotes::install_github("pachadotdev/wbstats")</code></pre>
+</div>
+<div id="downloading-data-from-the-world-bank" class="section level1">
+<h1>Downloading data from the World Bank</h1>
+<pre class="r"><code>library(wbstats)
+
+# Population for every country from 1960 until present
+d &lt;- wb_data("SP.POP.TOTL")
+
+head(d)
+#&gt; # A tibble: 6 × 9
+#&gt;   iso2c iso3c country    date SP.POP.TOTL unit  obs_status footnote last_updated
+#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;date&gt;
+#&gt; 1 AF    AFG   Afghanis…  2024    42647492 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-07-01
+#&gt; 2 AF    AFG   Afghanis…  2023    41454761 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-07-01
+#&gt; 3 AF    AFG   Afghanis…  2022    40578842 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-07-01
+#&gt; 4 AF    AFG   Afghanis…  2021    40000412 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-07-01
+#&gt; 5 AF    AFG   Afghanis…  2020    39068979 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-07-01
+#&gt; 6 AF    AFG   Afghanis…  2019    37856121 &lt;NA&gt;  &lt;NA&gt;       &lt;NA&gt;     2025-07-01</code></pre>
+<div id="hans-roslings-gapminder-using-wbstats" class="section level2">
+<h2>Hans Rosling’s Gapminder using <code>wbstats</code></h2>
+<pre class="r"><code>library(wbstats)
+library(data.table)
+
+my_indicators &lt;- c(
+  life_exp = "SP.DYN.LE00.IN",
+  gdp_capita ="NY.GDP.PCAP.CD",
+  pop = "SP.POP.TOTL"
+)
+
+d &lt;- wb_data(my_indicators, start_date = 2016)
+d &lt;- merge(d, wb_countries(), "iso3c")
+d &lt;- na.omit(d)
+
+png(file="man/figures/readme-gdppc-vs-lifexp.png", width = 900, height = 600)
+tinyplot(
+  life_exp ~ gdp_capita | region,
+  data = d,
+  cex = d$pop,
+  pch = 19,
+  alpha = 0.7,
+  palette = "tableau",
+  log = "x",
+  xaxl = "$",
+  main = "An Example of Hans Rosling's Gapminder using wbstats",
+  xlab = "GDP per Capita (log scale)",
+  ylab = "Life Expectancy at Birth",
+  cap = "Source: World Bank"
+)
+dev.off()</code></pre>
+<p><img src="/home/pacha/Documents/wbstats/man/figures/readme-gdppc-vs-lifexp.png"></p>
+</div>
+</div>
+        </div>
+        <footer><p id="last-updated">Loading...</p>
+</footer><script src="js/footer.js"></script><script src="js/theme.js"></script><script src="js/search.js"></script><script src="js/fontsize.js"></script></div>
+</div>
+</div>
+</body></html>
+

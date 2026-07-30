@@ -1,7 +1,7 @@
 Type: Package
 Package: wbstats
 Title: Programmatic Access to Data and Statistics from the World Bank API
-Version: 1.1
+Version: 1.2
 Authors@R: 
     c(
       person(
@@ -32,7 +32,6 @@ Imports:
     jsonlite
 Suggests: 
     litedown,
-    tinyplot,
     tinytest,
     vcr,
 Encoding: UTF-8

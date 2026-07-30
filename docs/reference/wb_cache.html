@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wb_cache • wbstats</title><link rel="stylesheet" href="../menu.css"><link rel="stylesheet" href="../content.css"><!-- MathJax Configuration --><script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script><script id="MathJax-script" async src="../js/tex-svg.js"></script></head><body>
+<div class="main-container">
+<div id="menu">
+  <div>
+    <img src="../man/figures/logo.svg" align="center" height="139" alt="wbstats logo"></div>
+
+  <div class="search-container">
+    <input type="text" id="search-box" placeholder="Search..."></div>
+
+  <div class="search-container">
+    <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">Toggle theme</button>
+    <button id="font-decrease" title="Decrease font size" aria-label="Decrease font size">A-</button>
+    <button id="font-increase" title="Increase font size" aria-label="Increase font size">A+</button>
+  </div>
+
+  <div class="submenu">
+    <label style="border-bottom: 0;"><a style="padding-left: 0;" href="../index.html">Home 🏠</a></label>
+  </div>
+
+
+  <div class="submenu">
+    <label>Functions</label>
+    <a href="../reference/wb_countries.html">wb_countries</a>
+    <a href="../reference/wb_topics.html">wb_topics</a>
+    <a href="../reference/wb_sources.html">wb_sources</a>
+    <a href="../reference/wb_regions.html">wb_regions</a>
+    <a href="../reference/wb_income_levels.html">wb_income_levels</a>
+    <a href="../reference/wb_lending_types.html">wb_lending_types</a>
+    <a href="../reference/wb_languages.html">wb_languages</a>
+    <a href="../reference/wb_indicators.html">wb_indicators</a>
+    <a href="../reference/wb_cache.html">wb_cache</a>
+    <a href="../reference/wb_search.html">wb_search</a>
+    <a href="../reference/wb_data.html">wb_data</a>
+  </div>
+
+  <div class="submenu">
+    <label>Vignettes</label>
+    <a href="../vignettes/wbstats.html">02 - Setup</a>
+  </div>
+
+  <div class="submenu">
+    <label>News</label>
+    <a href="../news/index.html">Changelog</a>
+  </div>
+</div>
+<div id="content">
+<div class="content-wrapper">
+        <div class="content-main">
+
+<table style="width: 100%;"><tr><td>wb_cache {wbstats}</td><td style="text-align: right;">R Documentation</td></tr></table><h2>Download an updated list of country, indicator, and source information</h2>
+
+<h3>Description</h3>
+
+<p>Download an updated list of information regarding countries, indicators, sources, regions, indicator topics, lending types, income levels, and supported languages from the World Bank API
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">wb_cache(lang)
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role="presentation"><tr><td><code id="lang">lang</code></td>
+<td>
+Language in which to return the results. If <code>lang</code> is unspecified, english is the default. For supported languages see <code>wb_languages()</code>. Possible values of <code>lang</code> are in the <code>iso2</code> column. A note of warning, not all data returns have support for langauges other than english. If the specific return does not support your requested language by default it will return <code>NA</code>.
+</td></tr></table><h3>Value</h3>
+
+<p>A list containing the following items:
+</p>
+
+<ul><li> <p><code>countries</code>: The result of calling <code>wb_countries()</code>
+</p>
+</li>
+<li> <p><code>indicators</code>: The result of calling <code>wb_indicators()</code>
+</p>
+</li>
+<li> <p><code>sources</code>: The result of calling <code>wb_sources()</code>
+</p>
+</li>
+<li> <p><code>topics</code>: The result of calling <code>wb_topics()</code>
+</p>
+</li>
+<li> <p><code>regions</code>: The result of calling <code>wb_regions()</code>
+</p>
+</li>
+<li> <p><code>income_levels</code>: The result of calling <code>wb_income_levels()</code>
+</p>
+</li>
+<li> <p><code>lending_types</code>: The result of calling <code>wb_lending_types()</code>
+</p>
+</li>
+<li> <p><code>languages</code>: The result of calling <code>wb_languages()</code>
+</p>
+</li></ul></div>
+        </div>
+        <footer><p id="last-updated">Loading...</p>
+</footer><script src="../js/footer.js"></script><script src="../js/theme.js"></script><script src="../js/search.js"></script><script src="../js/fontsize.js"></script></div>
+</div>
+
+</body></html>
+

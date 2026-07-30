@@ -90,7 +90,6 @@ if (requireNamespace("vcr", quietly = TRUE)) {
     expect_true(nrow(df) > 0)
   })
 
-
   # named indicators become column names (wide) - example
   vcr::use_cassette(name = "wb_named_vector_wide", {
     my_indicators <- c("pop" = "SP.POP.TOTL", "gdp" = "NY.GDP.MKTP.CD",

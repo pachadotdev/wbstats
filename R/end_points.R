@@ -168,24 +168,3 @@ wb_cache <- function(lang) {
 
   structure(out, class = "wblist")
 }
-
-#' Structure of a cache list
-#'
-#' @param object Cache list.
-#' @param max.level `integer`. Passed to [utils::str()], defaults to `1` so
-#'   only the top-level elements of the cache list are summarized.
-#' @param ... Further arguments passed to [utils::str()].
-#' @return `NULL`, invisibly. Called for the side effect of printing.
-#' @keywords internal
-#' @exportS3Method
-str.wblist <- function(object, max.level = 1, ...) {
-  # strip data.table's internal ".internal.selfref" pointer attribute so it
-  # doesn't clutter the output; this is purely cosmetic and does not modify
-  # the original object
-  object_clean <- lapply(object, function(x) {
-    attr(x, ".internal.selfref") <- NULL
-    x
-  })
-
-  str(object_clean, max.level = max.level, ...)
-}
