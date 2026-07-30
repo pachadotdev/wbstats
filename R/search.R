@@ -13,7 +13,7 @@
 #' @param cache List of data frames returned from [wb_cache()]. If omitted,
 #' [wb_cachelist] is used
 #' @param ... Any additional [grep()] agruments you which to pass
-#' @return a `data.frame` with indicators that match the search pattern.
+#' @return a `data.table`/`data.frame` with indicators that match the search pattern.
 #' @md
 #' @examples
 #' \donttest{d <- wb_search(pattern = "education")}
@@ -48,11 +48,13 @@ wb_search <- function(pattern, fields = c("indicator_id", "indicator", "indicato
                                                ". Returning an empty data frame."))
 
   if (extra) {
-    match_df <-  cache$indicators[match_index, ]
+    match_df <- ind_cache[match_index, ]
   } else {
-    match_df <- cache$indicators[match_index, c("indicator_id", "indicator", "indicator_desc")]
+    match_df <- ind_cache[match_index, c("indicator_id", "indicator", "indicator_desc")]
   }
 
   row.names(match_df) <- NULL
+  data.table::setDT(match_df)
+
   match_df
 }

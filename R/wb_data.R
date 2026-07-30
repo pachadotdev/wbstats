@@ -49,7 +49,7 @@
 #' Default is `FALSE`
 #' @inheritParams wb_cache
 #'
-#' @return a `data.frame` of all available requested data.
+#' @return a `data.table`/`data.frame` of all available requested data.
 #'
 #' @details
 #' ## `obs_status` column
@@ -247,10 +247,15 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
   data.table::setDF(d)
   if(!is.data.frame(d) | nrow(d) == 0) {
     warning("No data was returned for your query. Returning an empty data frame")
-    return(data.frame())
+    return(data.table::data.table())
   }
 
   d <- format_wb_data(d, end_point = "data")
+  # format_wb_data() returns a data.table; downgrade back to a plain
+  # data.frame here so all of the base-R bracket indexing below (which
+  # assumes data.frame `[, cols]` selection semantics) keeps working, then
+  # convert to a data.table once at the very end, right before returning
+  data.table::setDF(d)
 
   if (any(is.na(d$iso3c))) {
 
@@ -262,7 +267,7 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
     d$iso3c <- ifelse(is.na(d$iso3c), d$iso2c, d$iso3c)
     d$iso2c <- NULL
 
-    country_lookup <- unique(cache$countries[, c("iso3c", "iso2c")])
+    country_lookup <- unique(as.data.frame(cache$countries)[, c("iso3c", "iso2c")])
     d$iso2c <- country_lookup$iso2c[match(d$iso3c, country_lookup$iso3c)]
   }
 
@@ -275,7 +280,7 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
 
   if(nrow(d) == 0) {
     warning("No data was returned for your query. Returning an empty data frame")
-    return(data.frame())
+    return(data.table::data.table())
   }
 
   if (return_wide) {
@@ -335,6 +340,7 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
   if (date_as_class_date)  d <- format_wb_dates(d)
   else if (!any(grepl("M|Q", d$date, ignore.case = TRUE))) d$date <- as.numeric(d$date)
 
+  data.table::setDT(d)
+
   d
 }
-

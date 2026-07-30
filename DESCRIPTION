@@ -18,7 +18,9 @@ Authors@R:
        person(family = "The World Bank",
              role = "dtc")
      )
-Description: Search and download data from the World Bank Data API.
+Description: Search and download data from the World Bank Data API. Includes
+    support for mutliple languages, access to annual, quarterly, and monthly
+    data.
 License: Apache License 2.0
 URL: https://github.com/pachadotdev/wbstats
 BugReports: https://github.com/pachadotdev/wbstats/issues
@@ -29,13 +31,10 @@ Imports:
     httr,
     jsonlite
 Suggests: 
-    ggplot2,
-    knitr,
-    markdown,
-    rmarkdown,
+    litedown,
+    tinyplot,
     tinytest,
     vcr,
-VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: TRUE
-Config/roxygen2/version: 8.0.0
+VignetteBuilder: litedown

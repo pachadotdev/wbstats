@@ -17,7 +17,10 @@ wb_end_point <- function(end_point, lang) {
 #' interested in when using [wb_data()]
 #'
 #' @inheritParams wb_cache
-#' @return A `data.frame` of information about the end point
+#' @return A `data.table`/`data.frame` of information about the end point. A
+#'   `data.table` is used instead of a plain `data.frame` so that large tables
+#'   (e.g. the ~28k rows returned by [wb_indicators()]) print truncated to a
+#'   handful of rows instead of flooding the console.
 #' @name wb_end_point_info
 #' @seealso [wb_cache()]
 #' @md
@@ -151,7 +154,8 @@ wb_indicators <- function(lang, include_archive = FALSE) {
 #' @md
 wb_cache <- function(lang) {
   lang <- if_missing(lang, wb_default_lang(), lang)
-  list(
+  
+  out <- list(
     countries     = wb_countries(lang),
     indicators    = wb_indicators(lang),
     sources       = wb_sources(lang),
@@ -161,4 +165,27 @@ wb_cache <- function(lang) {
     lending_types = wb_lending_types(lang),
     languages     = wb_languages()
   )
+
+  structure(out, class = "wblist")
+}
+
+#' Structure of a cache list
+#'
+#' @param object Cache list.
+#' @param max.level `integer`. Passed to [utils::str()], defaults to `1` so
+#'   only the top-level elements of the cache list are summarized.
+#' @param ... Further arguments passed to [utils::str()].
+#' @return `NULL`, invisibly. Called for the side effect of printing.
+#' @keywords internal
+#' @exportS3Method
+str.wblist <- function(object, max.level = 1, ...) {
+  # strip data.table's internal ".internal.selfref" pointer attribute so it
+  # doesn't clutter the output; this is purely cosmetic and does not modify
+  # the original object
+  object_clean <- lapply(object, function(x) {
+    attr(x, ".internal.selfref") <- NULL
+    x
+  })
+
+  str(object_clean, max.level = max.level, ...)
 }

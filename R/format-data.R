@@ -59,7 +59,8 @@ format_wb_tidy_names <- function(x, end_point) {
   }
 
   row.names(x) <- NULL
-  x
+
+  data.table::setDT(x)
 }
 
 #' @noRd
@@ -154,7 +155,12 @@ format_wb_country <- function(x, cache) {
 
     # all of the region, lending, and income names are also listed in these 3
     # columns so a check here checks for all of them
-    cn_check <- as.matrix(cache_cn[ , c("iso3c", "iso2c", "country")])
+    # (built via $ access rather than `cache_cn[, c(...)]` so this works
+    # whether cache_cn is a data.frame or a data.table)
+    cn_check <- as.matrix(data.frame(iso3c = cache_cn$iso3c,
+                                     iso2c = cache_cn$iso2c,
+                                     country = cache_cn$country,
+                                     stringsAsFactors = FALSE))
 
     # don't forget everything is lowercase now
     cn_check <- tolower(cn_check)

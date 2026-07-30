@@ -12,9 +12,7 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lif
 [![R-CMD-check](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-You can install:
-
-The latest release version from CRAN with
+You can install the latest release version from CRAN with
 
 ``` r
 install.packages("wbstats")
