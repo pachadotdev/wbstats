@@ -37,22 +37,34 @@ This function allows finds indicators that match a search term and returns a dat
 }
 
 \examples{
-\donttest{d <- wb_search(pattern = "education")}
+\donttest{
+d <- wb_search(pattern = "education")
+}
 
-\donttest{d <- wb_search(pattern = "Food and Agriculture Organization", fields = "source_org")}
+\donttest{
+d <- wb_search(pattern = "Food and Agriculture Organization", fields = "source_org")
+}
 
 # with regular expression operators
 # 'poverty' OR 'unemployment' OR 'employment'
-\donttest{d <- wb_search(pattern = "poverty|unemployment|employment")}
+\donttest{
+d <- wb_search(pattern = "poverty|unemployment|employment")
+}
 
 # pass any other grep argument along as well
 # everything without 'education'
-\donttest{d <- wb_search(pattern = "education", invert = TRUE)}
+\donttest{
+d <- wb_search(pattern = "education", invert = TRUE)
+}
 
 # contains "gdp" AND "trade"
-\donttest{d <- wb_search("^(?=.*gdp)(?=.*trade).*", perl = TRUE)}
+\donttest{
+d <- wb_search("^(?=.*gdp)(?=.*trade).*", perl = TRUE)
+}
 
 # contains "gdp" and NOT "trade"
-\donttest{d <- wb_search("^(?=.*gdp)(?!.*trade).*", perl = TRUE)}
+\donttest{
+d <- wb_search("^(?=.*gdp)(?!.*trade).*", perl = TRUE)
+}
 }
 

@@ -16,36 +16,51 @@
 #' @return a `data.table`/`data.frame` with indicators that match the search pattern.
 #' @md
 #' @examples
-#' \donttest{d <- wb_search(pattern = "education")}
+#' \donttest{
+#' d <- wb_search(pattern = "education")
+#' }
 #'
-#' \donttest{d <- wb_search(pattern = "Food and Agriculture Organization", fields = "source_org")}
+#' \donttest{
+#' d <- wb_search(pattern = "Food and Agriculture Organization", fields = "source_org")
+#' }
 #'
 #' # with regular expression operators
 #' # 'poverty' OR 'unemployment' OR 'employment'
-#' \donttest{d <- wb_search(pattern = "poverty|unemployment|employment")}
+#' \donttest{
+#' d <- wb_search(pattern = "poverty|unemployment|employment")
+#' }
 #'
 #' # pass any other grep argument along as well
 #' # everything without 'education'
-#' \donttest{d <- wb_search(pattern = "education", invert = TRUE)}
+#' \donttest{
+#' d <- wb_search(pattern = "education", invert = TRUE)
+#' }
 #'
 #' # contains "gdp" AND "trade"
-#' \donttest{d <- wb_search("^(?=.*gdp)(?=.*trade).*", perl = TRUE)}
+#' \donttest{
+#' d <- wb_search("^(?=.*gdp)(?=.*trade).*", perl = TRUE)
+#' }
 #'
 #' # contains "gdp" and NOT "trade"
-#' \donttest{d <- wb_search("^(?=.*gdp)(?!.*trade).*", perl = TRUE)}
+#' \donttest{
+#' d <- wb_search("^(?=.*gdp)(?!.*trade).*", perl = TRUE)
+#' }
 #' @export
 wb_search <- function(pattern, fields = c("indicator_id", "indicator", "indicator_desc"),
-                      extra = FALSE, cache, ignore.case = TRUE, ...){
-
+                      extra = FALSE, cache, ignore.case = TRUE, ...) {
   if (missing(cache)) cache <- wbstats::wb_cachelist
   ind_cache <- as.data.table(cache$indicators)
 
-  match_index <- sort(unique(unlist(lapply(fields, FUN = function(i)
+  match_index <- sort(unique(unlist(lapply(fields, FUN = function(i) {
     grep(pattern, ind_cache[[i]], ignore.case = ignore.case, ...)
-  ))))
+  }))))
 
-  if (length(match_index) == 0) warning(paste0("no matches were found for the search term ", pattern,
-                                               ". Returning an empty data frame."))
+  if (length(match_index) == 0) {
+    warning(paste0(
+      "no matches were found for the search term ", pattern,
+      ". Returning an empty data frame."
+    ))
+  }
 
   if (extra) {
     match_df <- ind_cache[match_index, ]

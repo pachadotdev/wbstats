@@ -1,6 +1,5 @@
 #' @noRd
 wb_end_point <- function(end_point, lang) {
-
   get_url <- build_get_url(end_point, lang = lang)
 
   d <- as.data.table(fetch_wb_url(get_url))
@@ -94,15 +93,23 @@ wb_languages <- function() {
 #'
 #' @examples
 #' # can get a new list of available indicators by downloading new cache
-#' \donttest{fresh_cache <- wb_cache()}
-#' \donttest{fresh_indicators <- fresh_cache$indicators}
+#' \donttest{
+#' fresh_cache <- wb_cache()
+#' }
+#' \donttest{
+#' fresh_indicators <- fresh_cache$indicators
+#' }
 #'
 #' # or by running the wb_indicators() function directly
-#' \donttest{fresh_indicators <- wb_indicators()}
+#' \donttest{
+#' fresh_indicators <- wb_indicators()
+#' }
 #'
 #' # include archived indicators
 #' # see include_archive parameter description
-#' \donttest{indicators_with_achrive <- wb_indicators(include_archive = TRUE)}
+#' \donttest{
+#' indicators_with_achrive <- wb_indicators(include_archive = TRUE)
+#' }
 #' @export
 #' @md
 wb_indicators <- function(lang, include_archive = FALSE) {
@@ -154,7 +161,7 @@ wb_indicators <- function(lang, include_archive = FALSE) {
 #' @md
 wb_cache <- function(lang) {
   lang <- if_missing(lang, wb_default_lang(), lang)
-  
+
   out <- list(
     countries     = wb_countries(lang),
     indicators    = wb_indicators(lang),

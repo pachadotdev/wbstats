@@ -19,14 +19,22 @@ This function returns a \code{data.frame} of indicator IDs and related informati
 
 \examples{
 # can get a new list of available indicators by downloading new cache
-\donttest{fresh_cache <- wb_cache()}
-\donttest{fresh_indicators <- fresh_cache$indicators}
+\donttest{
+fresh_cache <- wb_cache()
+}
+\donttest{
+fresh_indicators <- fresh_cache$indicators
+}
 
 # or by running the wb_indicators() function directly
-\donttest{fresh_indicators <- wb_indicators()}
+\donttest{
+fresh_indicators <- wb_indicators()
+}
 
 # include archived indicators
 # see include_archive parameter description
-\donttest{indicators_with_achrive <- wb_indicators(include_archive = TRUE)}
+\donttest{
+indicators_with_achrive <- wb_indicators(include_archive = TRUE)
+}
 }
 

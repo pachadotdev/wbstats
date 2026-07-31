@@ -1,5 +1,4 @@
 .onLoad <- function(libname, pkgname) {
-
   op.wbstats <- list(
     wbstats.lang = "en",
     wbstats.cache_dir = NULL,
@@ -10,8 +9,7 @@
 
   # if the options are there, set them
   op_to_set <- !(names(op.wbstats) %in% names(options()))
-  if(any(op_to_set)) options(op.wbstats[op_to_set])
+  if (any(op_to_set)) options(op.wbstats[op_to_set])
 
- # check_refresh_on_load()
-
+  # check_refresh_on_load()
 }

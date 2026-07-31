@@ -52,8 +52,10 @@ wb_data_coverage <- function(data, by = c("iso2c", "iso3c", "country")) {
     out <- data[, list(pct_complete = pct_complete(.SD[["value"]])), by = c(by, "indicator_id")]
     out <- dcast(out, ... ~ indicator_id, value.var = "pct_complete")
   } else {
-    exclude_cols <- c("iso2c", "iso3c", "country", "date",
-                      "unit", "obs_status", "footnote", "last_updated", "obs_resolution")
+    exclude_cols <- c(
+      "iso2c", "iso3c", "country", "date",
+      "unit", "obs_status", "footnote", "last_updated", "obs_resolution"
+    )
     value_cols <- setdiff(names(data), c(by, exclude_cols))
 
     if (length(value_cols) == 0) stop("No indicator columns were found to summarize coverage for")

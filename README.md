@@ -14,7 +14,7 @@ maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lif
 
 You can install the latest release version from CRAN with
 
-``` r
+```r
 install.packages("wbstats")
 ```
 
@@ -22,13 +22,13 @@ or
 
 The latest development version from github with
 
-``` r
+```r
 remotes::install_github("pachadotdev/wbstats")
 ```
 
 # Downloading data from the World Bank
 
-``` r
+```r
 library(wbstats)
 
 # Population for every country from 1960 until present
@@ -49,7 +49,7 @@ head(d)
 
 ## Hans Rosling’s Gapminder using `wbstats`
 
-``` r
+```r
 library(wbstats)
 library(data.table)
 library(tinyplot)

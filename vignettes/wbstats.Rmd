@@ -335,7 +335,12 @@ head(pop_gdp)
 # 6:     AF    AFG Afghanistan  2012 19907329778 30560034
 ```
 
-You'll notice that when you query only one indicator, as in the first two examples above, it returns the extra fields `unit`, `obs_status`, `footnote`, and `last_updated`, but when we queried multiple indicators at once, as in our last example, they are dropped. This is because those extra fields are tied to a specific observation of a single indicator and when we have multiple indciator values in a single row, they are no longer consistent with the tidy data format. If you would like that information for multiple indicators, you can use `return_wide = FALSE`
+You'll notice that when you query only one indicator, as in the first two examples above, it returns
+the extra fields `unit`, `obs_status`, `footnote`, and `last_updated`, but when we queried multiple
+indicators at once, as in our last example, they are dropped. This is because those extra fields are
+tied to a specific observation of a single indicator and when we have multiple indicator values in
+a single row, they are no longer consistent with the tidy data format. If you would like that
+information for multiple indicators, you can use `return_wide = FALSE`
 
 ```r
 my_indicators = c("pop" = "SP.POP.TOTL", "gdp" = "NY.GDP.MKTP.CD")
@@ -358,6 +363,40 @@ head(pop_gdp_long)
 # 4:   <NA>       <NA>   2026-07-13
 # 5:   <NA>       <NA>   2026-07-13
 # 6:   <NA>       <NA>   2026-07-13
+```
+
+### Identifying missing observations
+
+`wb_data_coverage()` reports the percentage of complete observations for each country. Among
+other possibilities, combined with `data.table` it allows for simple filtering across one or
+more columns (variables).
+
+```r
+library(data.table)
+
+pop_gdp_cov <- wb_data_coverage(pop_gdp)
+
+# countries with less than 90% coverage for GDP per capita
+pop_gdp_cov[gdp < 90, ]
+
+#     iso2c  iso3c                   country   gdp   pop
+#    <char> <char>                    <char> <num> <num>
+# 1:     ER    ERI                   Eritrea  66.7   100
+# 2:     GI    GIB                 Gibraltar   0.0   100
+# 3:     MF    MAF  St. Martin (French part)  33.3   100
+# 4:     KP    PRK Korea, Dem. People's Rep.   0.0   100
+# 5:     VG    VGB    British Virgin Islands   0.0   100
+
+# countries with less than 90% coverage for any variable
+pop_gdp_cov[pop_gdp_cov[, do.call(pmin, .SD) < 90, .SDcols = is.numeric]]
+
+#     iso2c  iso3c                   country   gdp   pop
+#    <char> <char>                    <char> <num> <num>
+# 1:     ER    ERI                   Eritrea  66.7   100
+# 2:     GI    GIB                 Gibraltar   0.0   100
+# 3:     MF    MAF  St. Martin (French part)  33.3   100
+# 4:     KP    PRK Korea, Dem. People's Rep.   0.0   100
+# 5:     VG    VGB    British Virgin Islands   0.0   100
 ```
 
 ### Using `mrv` and `mrnev`

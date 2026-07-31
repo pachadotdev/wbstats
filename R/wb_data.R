@@ -1,4 +1,3 @@
-
 #' Download Data from the World Bank API
 #'
 #' This function downloads the requested information using the World Bank API
@@ -61,14 +60,18 @@
 #' @md
 #'
 #' @examples
-#' # NOTE: These examples are wrapped in \dontrun{} because they
+#' # NOTE: These examples are wrapped in a "don't run" because these
 #' # require an internet connection
-#' 
+#'
 #' # gdp for all countries for all available dates
-#' \dontrun{df_gdp <- wb_data("NY.GDP.MKTP.CD")}
+#' \dontrun{
+#' df_gdp <- wb_data("NY.GDP.MKTP.CD")
+#' }
 #'
 #' # Brazilian gdp for all available dates
-#' \dontrun{df_brazil <- wb_data("NY.GDP.MKTP.CD", country = "br")}
+#' \dontrun{
+#' df_brazil <- wb_data("NY.GDP.MKTP.CD", country = "br")
+#' }
 #'
 #' # Brazilian gdp for 2006
 #' \dontrun{
@@ -77,76 +80,97 @@
 #'
 #' # Brazilian gdp for 2006-2010
 #' \dontrun{
-#' df_brazil_2 <- wb_data("NY.GDP.MKTP.CD", country = "BRA",
-#'                        start_date = 2006, end_date = 2010)
-#'}
+#' df_brazil_2 <- wb_data("NY.GDP.MKTP.CD",
+#'   country = "BRA",
+#'   start_date = 2006, end_date = 2010
+#' )
+#' }
 #'
 #' # Population, GDP, Unemployment Rate, Birth Rate (per 1000 people)
 #' \dontrun{
-#' my_indicators <- c("SP.POP.TOTL",
-#'                    "NY.GDP.MKTP.CD",
-#'                    "SL.UEM.TOTL.ZS",
-#'                    "SP.DYN.CBRT.IN")
-#'}
+#' my_indicators <- c(
+#'   "SP.POP.TOTL",
+#'   "NY.GDP.MKTP.CD",
+#'   "SL.UEM.TOTL.ZS",
+#'   "SP.DYN.CBRT.IN"
+#' )
+#' }
 #'
-#' \dontrun{df <- wb_data(my_indicators)}
+#' \dontrun{
+#' df <- wb_data(my_indicators)
+#' }
 #'
 #' # you pass multiple country ids of different types
 #' # Albania (iso2c), Georgia (iso3c), and Mongolia
 #' \dontrun{
 #' my_countries <- c("AL", "Geo", "mongolia")
-#' df <- wb_data(my_indicators, country = my_countries,
-#'               start_date = 2005, end_date = 2007)
-#'}
+#' df <- wb_data(my_indicators,
+#'   country = my_countries,
+#'   start_date = 2005, end_date = 2007
+#' )
+#' }
 #'
 #' # same data as above, but in long format
 #' \dontrun{
-#' df_long <- wb_data(my_indicators, country = my_countries,
-#'                    start_date = 2005, end_date = 2007,
-#'                    return_wide = FALSE)
-#'}
+#' df_long <- wb_data(my_indicators,
+#'   country = my_countries,
+#'   start_date = 2005, end_date = 2007,
+#'   return_wide = FALSE
+#' )
+#' }
 #'
 #' # regional population totals
 #' # regions correspond to the region column in wb_cachelist$countries
 #' \dontrun{
-#' df_region <- wb_data("SP.POP.TOTL", country = "regions_only",
-#'                      start_date = 2010, end_date = 2014)
+#' df_region <- wb_data("SP.POP.TOTL",
+#'   country = "regions_only",
+#'   start_date = 2010, end_date = 2014
+#' )
 #' }
 #'
 #' # a specific region
 #' \dontrun{
-#' df_world <- wb_data("SP.POP.TOTL", country = "world",
-#'                     start_date = 2010, end_date = 2014)
-#'}
+#' df_world <- wb_data("SP.POP.TOTL",
+#'   country = "world",
+#'   start_date = 2010, end_date = 2014
+#' )
+#' }
 #'
 #' # if the indicator is part of a named vector the name will be the column name
-#' my_indicators <- c("pop" = "SP.POP.TOTL",
-#'                    "gdp" = "NY.GDP.MKTP.CD",
-#'                    "unemployment_rate" = "SL.UEM.TOTL.ZS",
-#'                    "birth_rate" = "SP.DYN.CBRT.IN")
-#'\dontrun{
-#' df_names <- wb_data(my_indicators, country = "world",
-#'                     start_date = 2010, end_date = 2014)
-#'}
+#' my_indicators <- c(
+#'   "pop" = "SP.POP.TOTL",
+#'   "gdp" = "NY.GDP.MKTP.CD",
+#'   "unemployment_rate" = "SL.UEM.TOTL.ZS",
+#'   "birth_rate" = "SP.DYN.CBRT.IN"
+#' )
+#' \dontrun{
+#' df_names <- wb_data(my_indicators,
+#'   country = "world",
+#'   start_date = 2010, end_date = 2014
+#' )
+#' }
 #'
 #' # custom names are ignored if returning in long format
 #' \dontrun{
-#' df_names_long <- wb_data(my_indicators, country = "world",
-#'                          start_date = 2010, end_date = 2014,
-#'                          return_wide = FALSE)
-#'}
+#' df_names_long <- wb_data(my_indicators,
+#'   country = "world",
+#'   start_date = 2010, end_date = 2014,
+#'   return_wide = FALSE
+#' )
+#' }
 #'
 #' # same as above but in Bulgarian
 #' # note that not all indicators have translations for all languages
 #' \dontrun{
-#' df_names_long_bg <- wb_data(my_indicators, country = "world",
-#'                             start_date = 2010, end_date = 2014,
-#'                             return_wide = FALSE, lang = "bg")
-#'}
+#' df_names_long_bg <- wb_data(my_indicators,
+#'   country = "world",
+#'   start_date = 2010, end_date = 2014,
+#'   return_wide = FALSE, lang = "bg"
+#' )
+#' }
 wb_data <- function(indicator, country = "countries_only", start_date, end_date,
                     return_wide = TRUE, mrv, mrnev, cache, freq, gapfill = FALSE,
                     date_as_class_date = FALSE, lang) {
-
   if (missing(cache)) cache <- wbstats::wb_cachelist
 
   base_url <- wb_api_parameters$base_url
@@ -158,16 +182,16 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
 
   # check dates ----------
   date_query <- NULL
-  if (!missing(start_date)  &&  missing(end_date)) date_query <- paste0(start_date, ":", start_date)
-  if (missing(start_date)   && !missing(end_date)) date_query <- paste0(end_date, ":", end_date)
+  if (!missing(start_date) && missing(end_date)) date_query <- paste0(start_date, ":", start_date)
+  if (missing(start_date) && !missing(end_date)) date_query <- paste0(end_date, ":", end_date)
   if (missing(start_date) == FALSE && missing(end_date) == FALSE) date_query <- paste0(start_date, ":", end_date)
 
   # check freq ----------
   freq_query <- NULL
   if (!missing(freq)) {
-
-    if (!freq %in% c("Y", "Q", "M"))
+    if (!freq %in% c("Y", "Q", "M")) {
       stop("If supplied, values for freq must be one of the following 'Y' (yearly), 'Q' (Quarterly), or 'M' (Monthly)")
+    }
 
     freq_query <- freq
   }
@@ -228,23 +252,23 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
 
   # be able to return this for debugging
   ind_url <- build_wb_url(
-      base_url  = base_url,  indicator  = indicator,
-      path_list = path_list, query_list = query_list
-    )
+    base_url  = base_url,  indicator  = indicator,
+    path_list = path_list, query_list = query_list
+  )
 
   # d_list <- lapply(ind_url, fetch_wb_url)
   d_list <- lapply(seq_along(ind_url),
-                   FUN = function(i){
-                     fetch_wb_url(
-                       url_string = ind_url[i],
-                       indicator = indicator[i]
-                     )
-                    }
-                   )
+    FUN = function(i) {
+      fetch_wb_url(
+        url_string = ind_url[i],
+        indicator = indicator[i]
+      )
+    }
+  )
   d_list <- d_list[vapply(d_list, is.data.frame, logical(1))]
 
   d <- rbindlist(d_list, fill = TRUE)
-  if(!is.data.frame(d) | nrow(d) == 0) {
+  if (!is.data.frame(d) | nrow(d) == 0) {
     warning("No data was returned for your query. Returning an empty data frame")
     return(data.table())
   }
@@ -252,7 +276,6 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
   d <- format_wb_data(d, end_point = "data")
 
   if (any(is.na(d$iso3c))) {
-
     # country names are not replaced with with cached versions b/c
     # some country names are subnational values where the iso3c and iso2c would
     # be the same value across mutliple subnational units
@@ -272,14 +295,14 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
     d <- d[d$iso3c %in% country_only_iso3c, ]
   }
 
-  if(nrow(d) == 0) {
+  if (nrow(d) == 0) {
     warning("No data was returned for your query. Returning an empty data frame")
     return(data.table())
   }
 
   if (return_wide) {
     context_cols <- c("iso2c", "iso3c", "country", "date")
-    extra_cols <- c("unit", "obs_status","footnote", "last_updated")
+    extra_cols <- c("unit", "obs_status", "footnote", "last_updated")
 
     ind_names <- unique(d[, c("indicator", "indicator_id"), with = FALSE])
 
@@ -294,7 +317,7 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
       cols_to_keep <- setdiff(cols_to_keep, extra_cols)
     }
 
-    d <- d[ , cols_to_keep, with = FALSE]
+    d <- d[, cols_to_keep, with = FALSE]
 
     d <- dcast(d, ... ~ indicator_id, value.var = "value")
 
@@ -311,26 +334,29 @@ wb_data <- function(indicator, country = "countries_only", start_date, end_date,
       for (i in 1:nrow(ind_names)) {
         d_col_old_name <- ind_names$indicator_id[i]
         d_col_new_name <- names(indicator[indicator == d_col_old_name])
-        if(! (d_col_new_name == "" || is.null(d_col_new_name)) )
+        if (!(d_col_new_name == "" || is.null(d_col_new_name))) {
           names(d)[which(names(d) == d_col_old_name)] <- d_col_new_name
+        }
       }
     }
 
     indicator_cols <- setdiff(names(d), c(context_cols, extra_cols))
     remaining_cols <- setdiff(names(d), c(context_cols, indicator_cols))
-    d <- d[ , c(context_cols, indicator_cols, remaining_cols), with = FALSE]
-
+    d <- d[, c(context_cols, indicator_cols, remaining_cols), with = FALSE]
   } else {
     # these columns are reordered for readability
-    col_order <- c("indicator_id", "indicator", "iso2c", "iso3c", "country", "date",
-                   "value", "unit", "obs_status", "footnote", "last_updated")
+    col_order <- c(
+      "indicator_id", "indicator", "iso2c", "iso3c", "country", "date",
+      "value", "unit", "obs_status", "footnote", "last_updated"
+    )
     col_order2 <- col_order[col_order %in% names(d)]
 
-    d <- d[ , col_order2, with = FALSE]
+    d <- d[, col_order2, with = FALSE]
   }
 
-  if (date_as_class_date)  d <- format_wb_dates(d)
-  else if (!any(grepl("M|Q", d$date, ignore.case = TRUE))) d$date <- as.numeric(d$date)
+  if (date_as_class_date) {
+    d <- format_wb_dates(d)
+  } else if (!any(grepl("M|Q", d$date, ignore.case = TRUE))) d$date <- as.numeric(d$date)
 
   d
 }
