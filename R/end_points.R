@@ -1,15 +1,13 @@
 #' @noRd
 wb_end_point <- function(end_point, lang) {
-
   get_url <- build_get_url(end_point, lang = lang)
 
-  d <- fetch_wb_url(get_url)
+  d <- as.data.table(fetch_wb_url(get_url))
   d_names <- format_wb_tidy_names(names(d), end_point = end_point)
   names(d) <- d_names
 
   format_wb_data(d, end_point = end_point)
 }
-
 
 #' World Bank Information End Points
 #'
@@ -18,7 +16,10 @@ wb_end_point <- function(end_point, lang) {
 #' interested in when using [wb_data()]
 #'
 #' @inheritParams wb_cache
-#' @return A `tibble` of information about the end point
+#' @return A `data.table`/`data.frame` of information about the end point. A
+#'   `data.table` is used instead of a plain `data.frame` so that large tables
+#'   (e.g. the ~28k rows returned by [wb_indicators()]) print truncated to a
+#'   handful of rows instead of flooding the console.
 #' @name wb_end_point_info
 #' @seealso [wb_cache()]
 #' @md
@@ -81,7 +82,7 @@ wb_languages <- function() {
 
 #' Download Avialable Indicators from the World Bank
 #'
-#' This function returns a [tibble][tibble::tibble-package] of indicator IDs and related information
+#' This function returns a `data.frame` of indicator IDs and related information
 #' that are available for download from the World Bank API
 #'
 #' @inheritParams wb_cache
@@ -92,15 +93,23 @@ wb_languages <- function() {
 #'
 #' @examples
 #' # can get a new list of available indicators by downloading new cache
-#' \donttest{fresh_cache <- wb_cache()}
-#' \donttest{fresh_indicators <- fresh_cache$indicators}
+#' \donttest{
+#' fresh_cache <- wb_cache()
+#' }
+#' \donttest{
+#' fresh_indicators <- fresh_cache$indicators
+#' }
 #'
 #' # or by running the wb_indicators() function directly
-#' \donttest{fresh_indicators <- wb_indicators()}
+#' \donttest{
+#' fresh_indicators <- wb_indicators()
+#' }
 #'
 #' # include archived indicators
 #' # see include_archive parameter description
-#' \donttest{indicators_with_achrive <- wb_indicators(include_archive = TRUE)}
+#' \donttest{
+#' indicators_with_achrive <- wb_indicators(include_archive = TRUE)
+#' }
 #' @export
 #' @md
 wb_indicators <- function(lang, include_archive = FALSE) {
@@ -152,7 +161,8 @@ wb_indicators <- function(lang, include_archive = FALSE) {
 #' @md
 wb_cache <- function(lang) {
   lang <- if_missing(lang, wb_default_lang(), lang)
-  list(
+
+  out <- list(
     countries     = wb_countries(lang),
     indicators    = wb_indicators(lang),
     sources       = wb_sources(lang),
@@ -162,4 +172,6 @@ wb_cache <- function(lang) {
     lending_types = wb_lending_types(lang),
     languages     = wb_languages()
   )
+
+  structure(out, class = "wblist")
 }

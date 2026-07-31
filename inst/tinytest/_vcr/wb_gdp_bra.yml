@@ -1,0 +1,38 @@
+http_interactions:
+- request:
+    method: GET
+    uri: https://api.worldbank.org/v2/en/country/bra/indicator/NY.GDP.MKTP.CD?date=2006%3A2010&footnote=y&cntrycode=y&per_page=20000&format=json
+  response:
+    status: 200
+    headers:
+      access-control-allow-headers: X-Requested-With
+      access-control-allow-methods: GET
+      access-control-allow-origin: '*'
+      age: '5'
+      cache-control: public, max-age=86400
+      cf-cache-status: HIT
+      cf-ray: a233946b1cca0339-LHR
+      content-encoding: gzip
+      content-type: application/json;charset=utf-8
+      date: Thu, 30 Jul 2026 10:11:31 GMT
+      expires: Fri, 31 Jul 2026 10:11:31 GMT
+      last-modified: Thu, 30 Jul 2026 10:11:26 GMT
+      request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
+      server: cloudflare
+      set-cookie:
+      - __cf_bm=oSHCT6cvdlwXygML7AtTRhQnwUUO4n33TtcRHh7ABvw-1785406291.6968858-1.0.1.1-x298cFwxcFsxQYfZhXjOyrwYHCtrMLGiMOSpCVjPoTWS8_npk9nse9EvJjFTaAULFgkIwvWIjvAW7vLKi6H60S1wn_ywo6EgfdR.hNG7sXbUBYUIqHO3TiVnpdSfb8Hj;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=worldbank.org; Expires=Thu,
+        30 Jul 2026 10:41:31 GMT
+      - _cfuvid=Nnjkwjjh1bc4NrLgBmuo7VgBR6mpqgiBgkDZiloVXl0-1785406291.6968858-1.0.1.1-9f8wZPzEN7pigtdb3fX1bnrwIu5xyg81igwUsdJw.Bg;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=worldbank.org
+      vary: accept-encoding
+      x-powered-by: ASP.NET
+    body:
+      string: '[{"page":1,"pages":1,"per_page":20000,"total":5,"sourceid":"2","lastupdated":"2026-07-13"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2010","value":2208837745100.55,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2009","value":1666996438581.43,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2008","value":1695855083497.52,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2007","value":1397114486368.67,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
+        (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2006","value":1107626541434.92,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
+  recorded_at: 2026-07-30 10:11:31
+recorded_with: VCR-vcr/2.1.0

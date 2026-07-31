@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wb_regions • wbstats</title><link rel="stylesheet" href="../menu.css"><link rel="stylesheet" href="../content.css"><!-- MathJax Configuration --><script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['\\(', '\\)'], ['$', '$']],
+        displayMath: [['\\[', '\\]'], ['$$', '$$']],
+        processEscapes: true,
+        processEnvironments: true,
+        packages: {'[+]': ['ams', 'newcommand', 'configmacros']}
+      },
+      options: {
+        ignoreHtmlClass: 'tex2jax_ignore',
+        processHtmlClass: 'tex2jax_process'
+      }
+    };
+  </script><script id="MathJax-script" async src="../js/tex-svg.js"></script></head><body>
+<div class="main-container">
+<div id="menu">
+  <div>
+    <img src="../man/figures/logo.svg" align="center" height="139" alt="wbstats logo"></div>
+
+  <div class="search-container">
+    <input type="text" id="search-box" placeholder="Search..."></div>
+
+  <div class="search-container">
+    <button id="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">Toggle theme</button>
+    <button id="font-decrease" title="Decrease font size" aria-label="Decrease font size">A-</button>
+    <button id="font-increase" title="Increase font size" aria-label="Increase font size">A+</button>
+  </div>
+
+  <div class="submenu">
+    <label style="border-bottom: 0;"><a style="padding-left: 0;" href="../index.html">Home 🏠</a></label>
+  </div>
+
+
+  <div class="submenu">
+    <label>Functions</label>
+    <a href="../reference/wb_countries.html">wb_countries</a>
+    <a href="../reference/wb_topics.html">wb_topics</a>
+    <a href="../reference/wb_sources.html">wb_sources</a>
+    <a href="../reference/wb_regions.html">wb_regions</a>
+    <a href="../reference/wb_income_levels.html">wb_income_levels</a>
+    <a href="../reference/wb_lending_types.html">wb_lending_types</a>
+    <a href="../reference/wb_languages.html">wb_languages</a>
+    <a href="../reference/wb_indicators.html">wb_indicators</a>
+    <a href="../reference/wb_cache.html">wb_cache</a>
+    <a href="../reference/wb_search.html">wb_search</a>
+    <a href="../reference/wb_data.html">wb_data</a>
+  </div>
+
+  <div class="submenu">
+    <label>Vignettes</label>
+    <a href="../vignettes/wbstats.html">02 - Setup</a>
+  </div>
+
+  <div class="submenu">
+    <label>News</label>
+    <a href="../news/index.html">Changelog</a>
+  </div>
+</div>
+<div id="content">
+<div class="content-wrapper">
+        <div class="content-main">
+
+<table style="width: 100%;"><tr><td>wb_end_point_info {wbstats}</td><td style="text-align: right;">R Documentation</td></tr></table><h2>World Bank Information End Points</h2>
+
+<h3>Description</h3>
+
+<p>These functions are simple wrappers around the various useful API end points that are helpful for finding avaiable data and filtering the data you are interested in when using <code>wb_data()</code>
+</p>
+
+
+<h3>Usage</h3>
+
+<pre><code class="language-R">wb_countries(lang)
+wb_topics(lang)
+wb_sources(lang)
+wb_regions(lang)
+wb_income_levels(lang)
+wb_lending_types(lang)
+wb_languages()
+</code></pre>
+
+
+<h3>Arguments</h3>
+
+<table role="presentation"><tr><td><code id="lang">lang</code></td>
+<td>
+Language in which to return the results. If <code>lang</code> is unspecified, english is the default. For supported languages see <code>wb_languages()</code>. Possible values of <code>lang</code> are in the <code>iso2</code> column. A note of warning, not all data returns have support for langauges other than english. If the specific return does not support your requested language by default it will return <code>NA</code>.
+</td></tr></table><h3>Value</h3>
+
+<p>A <code>data.table</code>/<code>data.frame</code> of information about the end point. A <code>data.table</code> is used instead of a plain <code>data.frame</code> so that large tables (e.g. the ~28k rows returned by <code>wb_indicators()</code>) print truncated to a handful of rows instead of flooding the console.
+</p>
+
+
+<h3>See Also</h3>
+
+<p><code>wb_cache()</code>
+</p>
+
+
+</div>
+        </div>
+        <footer><p id="last-updated">Loading...</p>
+</footer><script src="../js/footer.js"></script><script src="../js/theme.js"></script><script src="../js/search.js"></script><script src="../js/fontsize.js"></script></div>
+</div>
+
+</body></html>
+

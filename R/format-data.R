@@ -1,67 +1,70 @@
-
 #' @noRd
 format_wb_tidy_names <- function(x, end_point) {
-
   global_patterns <- wb_api_name_patterns$global_patterns
   local_patterns <- wb_api_name_patterns[[end_point]]
   all_patterns <- c(global_patterns, local_patterns)
 
+  x_trim <- trimws(x)
+  x_lower <- tolower(x_trim)
 
-  # this can all be replaces by janitor::clean_names
-  x_trim    <- stringr::str_trim(x)
-  x_lower   <- stringr::str_to_lower(x_trim)
-  x_replace <- stringr::str_replace_all(x_lower, all_patterns)
-  x_tidy    <- tibble::tidy_names(x_replace, quiet = TRUE)
+  x_replace <- x_lower
+  for (i in seq_along(all_patterns)) {
+    x_replace <- gsub(names(all_patterns)[i], all_patterns[[i]], x_replace)
+  }
+
+  x_tidy <- make.unique(x_replace, sep = "_")
 
   x_tidy
 }
 
-
-
 #' @noRd
-   format_wb_data <- function(x, end_point) {
-
+format_wb_data <- function(x, end_point) {
   x_field_types <- format_wb_get_col_type(x)
   col_index <- which(x_field_types %in% "character")
 
   # skip date column b/c it has its own parsing function
   col_index <- setdiff(col_index, which(names(x) == "date"))
 
-  x <- format_wb_func(x, readr::parse_guess,
-                      col_index = col_index)
+  x <- format_wb_func(x, format_wb_guess_type,
+    col_index = col_index
+  )
 
   # still need to make sure that blanks are turned to NAs
   if (end_point == "data") {
-
     x_names <- format_wb_tidy_names(names(x), end_point = end_point)
     names(x) <- x_names
 
-    if("value" %in% x_names) x$value <- as.numeric(x$value)
-    if("unit" %in% x_names) x$unit <- as.character(x$unit)
-    if("obs_status" %in% x_names) x$obs_status <- as.character(x$obs_status)
-    if("footnote" %in% x_names) x$footnote <- as.character(x$footnote)
+    if ("value" %in% x_names) x$value <- as.numeric(x$value)
+    if ("unit" %in% x_names) x$unit <- as.character(x$unit)
+    if ("obs_status" %in% x_names) x$obs_status <- as.character(x$obs_status)
+    if ("footnote" %in% x_names) x$footnote <- as.character(x$footnote)
   }
 
   if (end_point == "country") x[x$iso3c == "NAM", "iso2c"] <- "NA"
 
   if (end_point == "source") {
-
     log_fields <- c("data_available", "metadata_available")
     col_index <- which(names(x) %in% log_fields)
 
     x <- format_wb_func(x, format_wb_func_as_logical,
-                        true_pattern  = "Yes|yes|Y|y",
-                        false_pattern = "No|no|N|n",
-                        col_index = col_index)
+      true_pattern = "Yes|yes|Y|y",
+      false_pattern = "No|no|N|n",
+      col_index = col_index
+    )
   }
 
-  tibble::as_tibble(x)
+  x
+}
+
+#' @noRd
+format_wb_guess_type <- function(x, ...) {
+  utils::type.convert(x, as.is = TRUE)
 }
 
 
 #' @noRd
 format_wb_get_col_type <- function(x, ...) {
-  x_type <- sapply(seq(ncol(x)), FUN = function(i) typeof(x[ ,i]))
+  x_type <- vapply(seq_along(x), FUN = function(i) typeof(x[[i]]), FUN.VALUE = character(1))
   names(x_type) <- names(x)
   x_type
 }
@@ -80,26 +83,24 @@ format_wb_func_as_logical <- function(x, true_pattern, false_pattern, ...) {
 
   index_in_both <- base::intersect(true_index, false_index)
 
-  if(length(index_in_both) != 0)
+  if (length(index_in_both) != 0) {
     warning("Patterns provided match both `TRUE` and `FALSE`.")
+  }
 
-  x[true_index]  <- TRUE
+  x[true_index] <- TRUE
   x[false_index] <- FALSE
 
   as.logical(x, ...)
 }
 
 
-
 #' @noRd
-format_wb_func <- function(df, func, col_index,  ...) {
+format_wb_func <- function(df, func, col_index, ...) {
+  if (missing(col_index)) col_index <- seq_len(ncol(df))
 
-  if(missing(col_index)) col_index <- seq_len(ncol(df))
-
-  df[, col_index] <- lapply(col_index, FUN = function(i) {
-    x<- df[, i]
-    func(x, ...)
-  })
+  for (i in col_index) {
+    set(df, j = i, value = func(df[[i]], ...))
+  }
 
   df
 }
@@ -107,45 +108,42 @@ format_wb_func <- function(df, func, col_index,  ...) {
 
 #' @noRd
 format_wb_country <- function(x, cache) {
-
   x_lower <- tolower(x)
 
   if (missing(cache)) cache <- wbstats::wb_cachelist
   cache_cn <- cache$countries
 
 
-  if (any(x_lower %in% c("countries", "countries_only", "countries only")))
+  if (any(x_lower %in% c("countries", "countries_only", "countries only"))) {
     # it is actually faster and more reliable to request 'all' and then filter afterwards
     cn_params <- "all"
-
-  else if (any(x_lower %in% c("regions", "regions_only", "regions only")))
+  } else if (any(x_lower %in% c("regions", "regions_only", "regions only"))) {
     cn_params <- unique_na(cache_cn$region_iso3c)
-
-  else if (any(x_lower %in% c("admin_regions", "admin_regions_only", "admin regions only")))
+  } else if (any(x_lower %in% c("admin_regions", "admin_regions_only", "admin regions only"))) {
     cn_params <- unique_na(cache_cn$admin_region_iso3c)
-
-  else if (any(x_lower %in% c("income_levels", "income_levels_only", "income levels only")))
+  } else if (any(x_lower %in% c("income_levels", "income_levels_only", "income levels only"))) {
     cn_params <- unique_na(cache_cn$income_level_iso3c)
-
-  else if (any(x_lower %in% c("lending_types", "lending_types_only", "lending types only")))
+  } else if (any(x_lower %in% c("lending_types", "lending_types_only", "lending types only"))) {
     cn_params <- unique_na(cache_cn$lending_type_iso3c)
-
-  else if (any(x_lower %in% c("aggregates", "aggregates_only", "aggregates only")))
+  } else if (any(x_lower %in% c("aggregates", "aggregates_only", "aggregates only"))) {
     cn_params <- unique_na(cache_cn$iso3c[cache_cn$region == "Aggregates"])
-
-  else if (any(x_lower %in% "all"))
+  } else if (any(x_lower %in% "all")) {
     cn_params <- "all"
-
-  else if (length(x_lower) == 1 && x_lower == "the motherland") {
+  } else if (length(x_lower) == 1 && x_lower == "the motherland") {
     message("Good choice comrade...")
     cn_params <- "rus"
-  }
-
-  else { # any non-special values
+  } else { # any non-special values
 
     # all of the region, lending, and income names are also listed in these 3
     # columns so a check here checks for all of them
-    cn_check <- as.matrix(cache_cn[ , c("iso3c", "iso2c", "country")])
+    # (built via $ access rather than `cache_cn[, c(...)]` so this works
+    # whether cache_cn is a data.frame or a data.table)
+    cn_check <- as.matrix(data.frame(
+      iso3c = cache_cn$iso3c,
+      iso2c = cache_cn$iso2c,
+      country = cache_cn$country,
+      stringsAsFactors = FALSE
+    ))
 
     # don't forget everything is lowercase now
     cn_check <- tolower(cn_check)
@@ -153,22 +151,26 @@ format_wb_country <- function(x, cache) {
     good_cn_index <- x_lower %in% cn_check
     good_cn <- x_lower[good_cn_index]
 
-    if (length(good_cn) == 0)
+    if (length(good_cn) == 0) {
       stop("No valid values for the country parameter were found.
            Please check the country argument description in wbstats::wb_data() for valid input values.")
+    }
 
     # use x instead of x_lower to KeEp UsEr DeFiNeD cAsInG
     bad_cn <- x[!good_cn_index]
 
-    if (length(bad_cn) > 0)
-      warning(paste0("The following country values are not valid and are being excluded from the request: ",
-                                           paste(bad_cn, collapse = ",")))
+    if (length(bad_cn) > 0) {
+      warning(paste0(
+        "The following country values are not valid and are being excluded from the request: ",
+        paste(bad_cn, collapse = ",")
+      ))
+    }
 
     # the API only accepts IDs and not names, so if a country is listed in x
     # find its iso3c code. This lets the user pass values like "World" or "High Income"
     good_cn_iso3c_index <- lapply(1:ncol(cn_check), function(i) {
       which(cn_check[1:nrow(cn_check), i] %in% x_lower)
-      })
+    })
 
     good_cn_iso3c_index <- unique(unlist(good_cn_iso3c_index))
     cn_params <- cn_check[good_cn_iso3c_index, 1]
@@ -176,4 +178,3 @@ format_wb_country <- function(x, cache) {
 
   paste0(cn_params, collapse = ";")
 }
-

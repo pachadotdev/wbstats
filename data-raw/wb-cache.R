@@ -9,8 +9,7 @@ save(
   file = "data/wb_cachelist_dep.RData",
   compress = "xz",
   version = 2 # version 2 prevents a dependency on R >= 3.5.0
-   )
-
+)
 
 # new cache ----------
 wb_cachelist <- wb_cache(lang = "en")
@@ -19,5 +18,4 @@ save(
   file = "data/wb_cachelist.RData",
   compress = "xz",
   version = 2 # version 2 prevents a dependency on R >= 3.5.0
-    )
-
+)
