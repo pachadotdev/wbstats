@@ -1,6 +1,7 @@
 ^data-raw$
 ^README-.*\.png$
 ^cran-comments\.md$
+^dev$
 ^docs$
 ^LICENSE\.txt$
 ^TODOs\.md$
