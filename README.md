@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version/wbstats)](https://CRAN.R-project.or
 [![Lifecycle:
 maturing](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://lifecycle.r-lib.org/articles/stages.html#maturing)
 [![Test
-coverage](https://raw.githubusercontent.com/pachadotdev/wbstats/coverage/badges/coverage.svg)](https://github.com/pachadotdev/wbstats/actions/workflows/test-coverage.yaml)
+coverage](https://raw.githubusercontent.com/pachadotdev/wbstats/test-coverage/badges/coverage.svg)](https://github.com/pachadotdev/wbstats/actions/workflows/test-coverage.yaml)
 [![R-CMD-check](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/pachadotdev/wbstats/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 

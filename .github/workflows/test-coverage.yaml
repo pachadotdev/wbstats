@@ -91,8 +91,8 @@ jobs:
           # Save the badge file before switching branches
           cp badges/coverage.svg /tmp/coverage.svg
           
-          # Create or switch to coverage branch
-          git checkout -B coverage
+          # Create or switch to test-coverage branch
+          git checkout -B test-coverage
           
           # Remove everything except .git
           git rm -rf . || true
@@ -104,7 +104,7 @@ jobs:
           
           if ! git diff --staged --quiet; then
             git commit -m "Update coverage badge"
-            git push --force origin coverage
+            git push --force origin test-coverage
           else
             echo "No changes to commit"
           fi
