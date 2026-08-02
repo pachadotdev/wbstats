@@ -9,12 +9,18 @@
 # indicator list (dev/indicators.rds) and splits it into ranges, and each
 # matrix job runs this script with WB_SHARD_START/WB_SHARD_END set to its
 # 1-based, inclusive slice of that list. Each shard:
-#   - checks out the `data-coverage` branch into its own git worktree (so it
-#     doesn't disturb the main checkout the R package was installed from),
+#   - branches off `data-coverage` into its OWN branch
+#     (data-coverage-shard-<start>-<end>), checked out into a git worktree so
+#     it doesn't disturb the main checkout the R package was installed from.
+#     Every shard owning a distinct branch means there's no contention/retries
+#     when pushing, even with ~200 shards running in parallel.
 #   - writes one JSON file per indicator, skipping any whose content is
-#     identical to what's already committed on the branch,
-#   - commits and pushes every 10 indicators (batch_size), retrying with a
-#     rebase if another shard pushed in the meantime.
+#     identical to what's already committed on `data-coverage`,
+#   - commits and (force-)pushes every 10 indicators (batch_size) to its own
+#     shard branch.
+# A separate `merge-shards` job (run after all shards finish) then merges
+# every shard branch into `data-coverage` one at a time, so that merge step
+# never has concurrent pushes to contend with either.
 
 # DON'T RUN THIS FROM A LAPTOP
 
@@ -23,20 +29,11 @@ library(data.table)
 library(wbstats)
 library(jsonlite)
 
-branch <- "data-coverage"
+base_branch <- "data-coverage"
 worktree_dir <- "data-coverage-checkout"
 batch_size <- 10
 
 pct_complete <- function(x) round(100 * mean(!is.na(x)), 1)
-
-# --- check out `data-coverage` into its own worktree, sharing the credentials
-# actions/checkout already configured for `origin` in the main checkout ------
-system2("git", c("fetch", "origin", branch))
-if (!dir.exists(worktree_dir)) {
-    system2("git", c("worktree", "add", "-B", branch, worktree_dir, paste0("origin/", branch)))
-}
-system2("git", c("-C", worktree_dir, "config", "user.email", "action@github.com"))
-system2("git", c("-C", worktree_dir, "config", "user.name", "GitHub Action"))
 
 # --- this shard's indicators -------------------------------------------------
 indicators <- readRDS("dev/indicators.rds")
@@ -48,16 +45,27 @@ indicators <- indicators[start:end]
 
 n <- length(indicators)
 
-# push with a rebase-and-retry loop, since other shards commit/push to the
-# same branch concurrently
-git_push <- function(tries = 5) {
+branch <- sprintf("data-coverage-shard-%d-%d", start, end)
+
+# --- branch off `data-coverage` into this shard's own branch, into its own
+# worktree, sharing the credentials actions/checkout already configured for
+# `origin` in the main checkout -----------------------------------------------
+system2("git", c("fetch", "origin", base_branch))
+system2("git", c("worktree", "add", "-B", branch, worktree_dir, paste0("origin/", base_branch)))
+system2("git", c("-C", worktree_dir, "config", "user.email", "action@github.com"))
+system2("git", c("-C", worktree_dir, "config", "user.name", "GitHub Action"))
+
+# this shard is the only writer of its own branch, so a plain (force) push
+# with a couple of retries for transient network errors is enough - no
+# pull/rebase dance needed
+git_push <- function(tries = 3) {
     for (i in seq_len(tries)) {
-        ok <- system2("git", c("-C", worktree_dir, "push", "origin", paste0("HEAD:", branch))) == 0
+        ok <- system2("git", c("-C", worktree_dir, "push", "--force", "origin", paste0("HEAD:", branch))) == 0
         if (ok) {
             return(invisible(TRUE))
         }
-        message("  push rejected, pulling and retrying...")
-        system2("git", c("-C", worktree_dir, "pull", "--rebase", "origin", branch))
+        message("  push failed, retrying...")
+        Sys.sleep(5)
     }
     stop("failed to push to ", branch, " after ", tries, " tries")
 }

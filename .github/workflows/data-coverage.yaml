@@ -15,9 +15,13 @@ name: data-coverage
 #      at most WB_MAX_SHARDS shards for the matrix below (GitHub Actions
 #      caps a matrix at 256 configurations).
 #   2. `data-coverage` runs one job per shard in parallel. Each shard commits
-#      and pushes its own results in batches of 10 indicators (see
-#      dev/data-coverage.R), skipping any file whose content hasn't changed
-#      since it was last committed.
+#      its results in batches of 10 indicators (see dev/data-coverage.R),
+#      skipping any file whose content hasn't changed since it was last
+#      committed, and pushes to its OWN branch (data-coverage-shard-<range>)
+#      so parallel shards never contend over the same ref.
+#   3. `merge-shards` runs once all shards are done and sequentially merges
+#      every shard branch into `data-coverage`, then deletes the shard
+#      branches. Being sequential, this step never has push conflicts either.
 jobs:
   prepare:
     runs-on: ubuntu-latest
@@ -121,4 +125,39 @@ jobs:
       - name: "Data coverage (indicators ${{ matrix.shard.start }}-${{ matrix.shard.end }})"
         run: source("dev/data-coverage.R")
         shell: Rscript {0}
+
+  merge-shards:
+    needs: [prepare, data-coverage]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: data-coverage
+
+      - name: Merge shard branches into data-coverage
+        env:
+          MATRIX_JSON: ${{ needs.prepare.outputs.matrix }}
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+
+          echo "$MATRIX_JSON" | jq -c '.[]' | while read -r shard; do
+            start=$(echo "$shard" | jq -r '.start')
+            end=$(echo "$shard" | jq -r '.end')
+            branch="data-coverage-shard-${start}-${end}"
+
+            if git ls-remote --exit-code --heads origin "$branch" > /dev/null 2>&1; then
+              echo "merging $branch"
+              git fetch origin "$branch"
+              git merge --no-ff -m "Merge $branch" "origin/$branch"
+              git push origin data-coverage
+              git push origin --delete "$branch"
+            else
+              echo "shard branch $branch not found, skipping"
+            fi
+          done
 
