@@ -12,7 +12,8 @@ name: data-coverage
 # GitHub Actions' 6h job limit. Instead:
 #   1. `prepare` makes sure the `data-coverage` branch exists (creating it
 #      empty if this is the very first run) and splits all indicators into
-#      shards of WB_CHUNK_SIZE for the matrix below.
+#      at most WB_MAX_SHARDS shards for the matrix below (GitHub Actions
+#      caps a matrix at 256 configurations).
 #   2. `data-coverage` runs one job per shard in parallel. Each shard commits
 #      and pushes its own results in batches of 10 indicators (see
 #      dev/data-coverage.R), skipping any file whose content hasn't changed
@@ -26,7 +27,7 @@ jobs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      WB_CHUNK_SIZE: 100
+      WB_MAX_SHARDS: 200
 
     steps:
       - uses: actions/checkout@v4
