@@ -7,13 +7,26 @@ on:
 
 name: data-coverage
 
+# Every indicator is downloaded and summarized individually (there's no bulk
+# coverage endpoint), so a single-job, single-commit run can take longer than
+# GitHub Actions' 6h job limit. Instead:
+#   1. `prepare` makes sure the `data-coverage` branch exists (creating it
+#      empty if this is the very first run) and splits all indicators into
+#      shards of WB_CHUNK_SIZE for the matrix below.
+#   2. `data-coverage` runs one job per shard in parallel. Each shard commits
+#      and pushes its own results in batches of 10 indicators (see
+#      dev/data-coverage.R), skipping any file whose content hasn't changed
+#      since it was last committed.
 jobs:
-  data-coverage:
+  prepare:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      WB_CHUNK_SIZE: 100
 
     steps:
       - uses: actions/checkout@v4
@@ -34,32 +47,70 @@ jobs:
           pak::local_install(".", dependencies = TRUE)
         shell: Rscript {0}
 
-      - name: Data coverage
-        run: source("dev/data-coverage.R")
-        shell: Rscript {0}
-
-      - name: Commit data coverage
+      - name: Ensure data-coverage branch exists
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
-          # Move the freshly generated JSON files out of the way before switching branches
-          mv data-coverage-output /tmp/data-coverage-output
-
-          # Reset (or create) the data-coverage branch so it holds only the JSON files,
-          # without dragging along the full source history each run
-          git checkout -B data-coverage
-
-          # Drop everything else, keep just the new JSON files
-          git rm -rf . > /dev/null 2>&1 || true
-          mv /tmp/data-coverage-output/* .
-          rmdir /tmp/data-coverage-output
-
-          git add -A
-          if ! git diff --staged --quiet; then
-            git commit -m "Update data coverage files"
-            git push --force origin data-coverage
+          if git ls-remote --exit-code --heads origin data-coverage > /dev/null 2>&1; then
+            echo "data-coverage branch already exists"
           else
-            echo "No changes to commit"
+            echo "creating empty data-coverage branch"
+            git checkout --orphan data-coverage
+            git rm -rf . > /dev/null 2>&1 || true
+            git commit --allow-empty -m "Initialize empty data-coverage branch"
+            git push origin data-coverage
           fi
+
+      - name: Build indicator list and shard matrix
+        id: matrix
+        run: source("dev/build-indicator-shards.R")
+        shell: Rscript {0}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: indicators
+          path: dev/indicators.rds
+
+  data-coverage:
+    needs: prepare
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      WB_SHARD_START: ${{ matrix.shard.start }}
+      WB_SHARD_END: ${{ matrix.shard.end }}
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          use-public-rspm: false
+
+      - uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          needs: check
+
+      - name: Install package
+        run: |
+          options(warn = 2)
+          pak::local_install(".", dependencies = TRUE)
+        shell: Rscript {0}
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: indicators
+          path: dev
+
+      - name: "Data coverage (indicators ${{ matrix.shard.start }}-${{ matrix.shard.end }})"
+        run: source("dev/data-coverage.R")
+        shell: Rscript {0}
 
