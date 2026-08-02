@@ -52,6 +52,8 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
+          default_branch="$(git rev-parse --abbrev-ref HEAD)"
+
           if git ls-remote --exit-code --heads origin data-coverage > /dev/null 2>&1; then
             echo "data-coverage branch already exists"
           else
@@ -60,6 +62,11 @@ jobs:
             git rm -rf . > /dev/null 2>&1 || true
             git commit --allow-empty -m "Initialize empty data-coverage branch"
             git push origin data-coverage
+
+            # git rm -rf wiped the working directory (this is the orphan
+            # branch's whole point), so switch back to the source branch
+            # before later steps need the package/scripts on disk again
+            git checkout "$default_branch"
           fi
 
       - name: Build indicator list and shard matrix
