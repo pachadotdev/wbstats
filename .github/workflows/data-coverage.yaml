@@ -137,6 +137,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           ref: data-coverage
+          fetch-depth: 0
 
       - name: Merge shard branches into data-coverage
         env:
