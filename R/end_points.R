@@ -108,7 +108,7 @@ wb_languages <- function() {
 #' # include archived indicators
 #' # see include_archive parameter description
 #' \donttest{
-#' indicators_with_achrive <- wb_indicators(include_archive = TRUE)
+#' indicators_with_archive <- wb_indicators(include_archive = TRUE)
 #' }
 #' @export
 #' @md

@@ -34,7 +34,7 @@ fresh_indicators <- wb_indicators()
 # include archived indicators
 # see include_archive parameter description
 \donttest{
-indicators_with_achrive <- wb_indicators(include_archive = TRUE)
+indicators_with_archive <- wb_indicators(include_archive = TRUE)
 }
 }
 
