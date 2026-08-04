@@ -58,7 +58,7 @@ format_wb_data <- function(x, end_point) {
 
 #' @noRd
 format_wb_guess_type <- function(x, ...) {
-  utils::type.convert(x, as.is = TRUE)
+  type.convert(x, as.is = TRUE)
 }
 
 
@@ -81,7 +81,7 @@ format_wb_func_as_logical <- function(x, true_pattern, false_pattern, ...) {
   true_index <- grep(true_pattern, x = x, ...)
   false_index <- grep(false_pattern, x = x, ...)
 
-  index_in_both <- base::intersect(true_index, false_index)
+  index_in_both <- intersect(true_index, false_index)
 
   if (length(index_in_both) != 0) {
     warning("Patterns provided match both `TRUE` and `FALSE`.")
@@ -153,7 +153,7 @@ format_wb_country <- function(x, cache) {
 
     if (length(good_cn) == 0) {
       stop("No valid values for the country parameter were found.
-           Please check the country argument description in wbstats::wb_data() for valid input values.")
+           Please check the country argument description in wb_data() for valid input values.")
     }
 
     # use x instead of x_lower to KeEp UsEr DeFiNeD cAsInG

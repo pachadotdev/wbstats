@@ -49,6 +49,28 @@ head(d)
 #> 6 AF    AFG   Afghanis…  2019    37856121 <NA>  <NA>       <NA>     2025-07-01
 ```
 
+The current World Bank API does not provide summaries of data availability. I added the
+`wb_variable_coverage()` function to supply that, which reads pre-computed summaries
+from GitHub.
+
+```r
+wb_variable_coverage("SP.POP.TOTL")
+
+#       iso2c  iso3c      country pct_complete  from    to  nobs    variable
+#      <char> <char>       <char>        <num> <int> <int> <int>      <char>
+#   1:     AW    ABW        Aruba          100  1960  2025    66 SP.POP.TOTL
+#   2:     AF    AFG  Afghanistan          100  1960  2025    66 SP.POP.TOTL
+#   3:     AO    AGO       Angola          100  1960  2025    66 SP.POP.TOTL
+#   4:     AL    ALB      Albania          100  1960  2025    66 SP.POP.TOTL
+#   5:     AD    AND      Andorra          100  1960  2025    66 SP.POP.TOTL
+#  ---                                                                      
+# 213:     XK    XKX       Kosovo          100  1960  2025    66 SP.POP.TOTL
+# 214:     YE    YEM  Yemen, Rep.          100  1960  2025    66 SP.POP.TOTL
+# 215:     ZA    ZAF South Africa          100  1960  2025    66 SP.POP.TOTL
+# 216:     ZM    ZMB       Zambia          100  1960  2025    66 SP.POP.TOTL
+# 217:     ZW    ZWE     Zimbabwe          100  1960  2025    66 SP.POP.TOTL
+```
+
 ## Hans Rosling’s Gapminder using `wbstats`
 
 ```r

@@ -5,6 +5,9 @@
 #'  data.
 #'
 #' @importFrom data.table as.data.table data.table dcast rbindlist set `.SD`
+#' @importFrom httr content http_error http_status http_type modify_url RETRY timeout user_agent
+#' @importFrom jsonlite fromJSON
+#' @importFrom utils type.convert
 #'
 #' @name wbstats
 "_PACKAGE"
