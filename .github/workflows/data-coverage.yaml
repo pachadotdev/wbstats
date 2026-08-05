@@ -2,7 +2,7 @@
 # Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
 on:
   schedule:
-    - cron: "0 3 * * 0" # weekly, Sunday 03:00 UTC
+    - cron: "0 3 1 * 0" # Monthly, 1st day of the month at 03:00 UTC
   workflow_dispatch:
 
 name: data-coverage
@@ -31,7 +31,7 @@ jobs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
-      WB_MAX_SHARDS: 200
+      WB_MAX_SHARDS: 50
 
     steps:
       - uses: actions/checkout@v4
@@ -161,4 +161,3 @@ jobs:
               echo "shard branch $branch not found, skipping"
             fi
           done
-
