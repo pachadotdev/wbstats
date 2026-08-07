@@ -50,25 +50,40 @@ head(d)
 ```
 
 The current World Bank API does not provide summaries of data availability. I added the
-`wb_variable_coverage()` function to supply that, which reads pre-computed summaries
+`wb_country_coverage()` function to supply that, which reads pre-computed summaries
 from GitHub.
 
 ```r
-wb_variable_coverage("SP.POP.TOTL")
+d <- wb_country_coverage("GDPCAP", c("Mexico", "Chile"), 2010, 2020)
+d
 
-#       iso2c  iso3c      country pct_complete  from    to  nobs    variable
-#      <char> <char>       <char>        <num> <int> <int> <int>      <char>
-#   1:     AW    ABW        Aruba          100  1960  2025    66 SP.POP.TOTL
-#   2:     AF    AFG  Afghanistan          100  1960  2025    66 SP.POP.TOTL
-#   3:     AO    AGO       Angola          100  1960  2025    66 SP.POP.TOTL
-#   4:     AL    ALB      Albania          100  1960  2025    66 SP.POP.TOTL
-#   5:     AD    AND      Andorra          100  1960  2025    66 SP.POP.TOTL
-#  ---                                                                      
-# 213:     XK    XKX       Kosovo          100  1960  2025    66 SP.POP.TOTL
-# 214:     YE    YEM  Yemen, Rep.          100  1960  2025    66 SP.POP.TOTL
-# 215:     ZA    ZAF South Africa          100  1960  2025    66 SP.POP.TOTL
-# 216:     ZM    ZMB       Zambia          100  1960  2025    66 SP.POP.TOTL
-# 217:     ZW    ZWE     Zimbabwe          100  1960  2025    66 SP.POP.TOTL
+#      iso2c  iso3c country pct_complete  from    to  nobs                  indicator
+#     <char> <char>  <char>        <num> <int> <int> <int>                     <char>
+#  1:     CL    CHL   Chile         17.8  1960  2100    18  UIS.XUNIT.GDPCAP.02.FSGOV
+#  2:     MX    MEX  Mexico         12.9  1960  2100    13  UIS.XUNIT.GDPCAP.02.FSGOV
+#  3:     CL    CHL   Chile         18.8  1960  2100    19   UIS.XUNIT.GDPCAP.1.FSGOV
+#  4:     MX    MEX  Mexico         19.8  1960  2100    20   UIS.XUNIT.GDPCAP.1.FSGOV
+#  5:     CL    CHL   Chile         15.8  1960  2100    16    UIS.XUNIT.GDPCAP.1.FSHH
+#  6:     MX    MEX  Mexico         15.8  1960  2100    16    UIS.XUNIT.GDPCAP.1.FSHH
+#  7:     CL    CHL   Chile         17.8  1960  2100    18   UIS.XUNIT.GDPCAP.2.FSGOV
+#  8:     MX    MEX  Mexico         18.8  1960  2100    19   UIS.XUNIT.GDPCAP.2.FSGOV
+#  9:     CL    CHL   Chile         17.8  1960  2100    18  UIS.XUNIT.GDPCAP.23.FSGOV
+# 10:     MX    MEX  Mexico         18.8  1960  2100    19  UIS.XUNIT.GDPCAP.23.FSGOV
+# 11:     CL    CHL   Chile         15.8  1960  2100    16   UIS.XUNIT.GDPCAP.23.FSHH
+# 12:     MX    MEX  Mexico         16.8  1960  2100    17   UIS.XUNIT.GDPCAP.23.FSHH
+# 13:     CL    CHL   Chile         17.8  1960  2100    18   UIS.XUNIT.GDPCAP.3.FSGOV
+# 14:     MX    MEX  Mexico         18.8  1960  2100    19   UIS.XUNIT.GDPCAP.3.FSGOV
+# 15:     CL    CHL   Chile         18.8  1960  2100    19 UIS.XUNIT.GDPCAP.5T8.FSGOV
+# 16:     MX    MEX  Mexico         18.8  1960  2100    19 UIS.XUNIT.GDPCAP.5T8.FSGOV
+# 17:     CL    CHL   Chile         15.8  1960  2100    16  UIS.XUNIT.GDPCAP.5T8.FSHH
+# 18:     MX    MEX  Mexico         16.8  1960  2100    17  UIS.XUNIT.GDPCAP.5T8.FSHH
+
+# countries with less than 15% coverage for any variable
+d[pct_complete < 15, ]
+
+#     iso2c  iso3c country pct_complete  from    to  nobs                 indicator
+#    <char> <char>  <char>        <num> <int> <int> <int>                    <char>
+# 1:     MX    MEX  Mexico         12.9  1960  2100    13 UIS.XUNIT.GDPCAP.02.FSGOV
 ```
 
 ## Hans Rosling’s Gapminder using `wbstats`
@@ -85,23 +100,6 @@ my_indicators <- c(
 )
 
 d <- wb_data(my_indicators, start_date = 2016)
-
-d2 <- wb_data_coverage(d)
-
-# countries with less than 90% coverage for GDP per capita
-d2[gdp_capita < 90, ]
-
-# countries with less than 90% coverage for any variable
-d2[d2[, do.call(pmin, .SD) < 90, .SDcols = is.numeric]]
-
-#     iso2c  iso3c                   country gdp_capita life_exp   pop
-#    <char> <char>                    <char>      <num>    <num> <num>
-# 1:     ER    ERI                   Eritrea          0      100   100
-# 2:     GI    GIB                 Gibraltar          0      100   100
-# 3:     MF    MAF  St. Martin (French part)          0      100   100
-# 4:     KP    PRK Korea, Dem. People's Rep.          0      100   100
-# 5:     SS    SSD               South Sudan          0      100   100
-# 6:     VG    VGB    British Virgin Islands          0      100   100
 
 d <- merge(d, wb_countries(), "iso3c")
 d <- na.omit(d)

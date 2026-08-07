@@ -365,40 +365,6 @@ head(pop_gdp_long)
 # 6:   <NA>       <NA>   2026-07-13
 ```
 
-### Identifying missing observations
-
-`wb_data_coverage()` reports the percentage of complete observations for each country. Among
-other possibilities, combined with `data.table` it allows for simple filtering across one or
-more columns (variables).
-
-```r
-library(data.table)
-
-pop_gdp_cov <- wb_data_coverage(pop_gdp)
-
-# countries with less than 90% coverage for GDP per capita
-pop_gdp_cov[gdp < 90, ]
-
-#     iso2c  iso3c                   country   gdp   pop
-#    <char> <char>                    <char> <num> <num>
-# 1:     ER    ERI                   Eritrea  66.7   100
-# 2:     GI    GIB                 Gibraltar   0.0   100
-# 3:     MF    MAF  St. Martin (French part)  33.3   100
-# 4:     KP    PRK Korea, Dem. People's Rep.   0.0   100
-# 5:     VG    VGB    British Virgin Islands   0.0   100
-
-# countries with less than 90% coverage for any variable
-pop_gdp_cov[pop_gdp_cov[, do.call(pmin, .SD) < 90, .SDcols = is.numeric]]
-
-#     iso2c  iso3c                   country   gdp   pop
-#    <char> <char>                    <char> <num> <num>
-# 1:     ER    ERI                   Eritrea  66.7   100
-# 2:     GI    GIB                 Gibraltar   0.0   100
-# 3:     MF    MAF  St. Martin (French part)  33.3   100
-# 4:     KP    PRK Korea, Dem. People's Rep.   0.0   100
-# 5:     VG    VGB    British Virgin Islands   0.0   100
-```
-
 ### Using `mrv` and `mrnev`
 
 If you do not know the latest date an indicator you are interested in is available for you country

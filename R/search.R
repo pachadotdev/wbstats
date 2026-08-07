@@ -49,7 +49,7 @@
 wb_search <- function(pattern, fields = c("indicator_id", "indicator", "indicator_desc"),
                       extra = FALSE, cache, ignore.case = TRUE, ...) {
   if (missing(cache)) cache <- wbstats::wb_cachelist
-  ind_cache <- as.data.table(cache$indicators)
+  ind_cache <- cache$indicators
 
   match_index <- sort(unique(unlist(lapply(fields, FUN = function(i) {
     grep(pattern, ind_cache[[i]], ignore.case = ignore.case, ...)
