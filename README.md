@@ -54,29 +54,22 @@ The current World Bank API does not provide summaries of data availability. I ad
 from GitHub.
 
 ```r
-d <- wb_country_coverage("GDPCAP", c("Mexico", "Chile"), 2010, 2020)
+d <- wb_country_coverage("gross domestic product", c("Mexico", "Chile"), 2010, 2020)
 d
 
-#      iso2c  iso3c country pct_complete  from    to  nobs                  indicator
-#     <char> <char>  <char>        <num> <int> <int> <int>                     <char>
-#  1:     CL    CHL   Chile         17.8  1960  2100    18  UIS.XUNIT.GDPCAP.02.FSGOV
-#  2:     MX    MEX  Mexico         12.9  1960  2100    13  UIS.XUNIT.GDPCAP.02.FSGOV
-#  3:     CL    CHL   Chile         18.8  1960  2100    19   UIS.XUNIT.GDPCAP.1.FSGOV
-#  4:     MX    MEX  Mexico         19.8  1960  2100    20   UIS.XUNIT.GDPCAP.1.FSGOV
-#  5:     CL    CHL   Chile         15.8  1960  2100    16    UIS.XUNIT.GDPCAP.1.FSHH
-#  6:     MX    MEX  Mexico         15.8  1960  2100    16    UIS.XUNIT.GDPCAP.1.FSHH
-#  7:     CL    CHL   Chile         17.8  1960  2100    18   UIS.XUNIT.GDPCAP.2.FSGOV
-#  8:     MX    MEX  Mexico         18.8  1960  2100    19   UIS.XUNIT.GDPCAP.2.FSGOV
-#  9:     CL    CHL   Chile         17.8  1960  2100    18  UIS.XUNIT.GDPCAP.23.FSGOV
-# 10:     MX    MEX  Mexico         18.8  1960  2100    19  UIS.XUNIT.GDPCAP.23.FSGOV
-# 11:     CL    CHL   Chile         15.8  1960  2100    16   UIS.XUNIT.GDPCAP.23.FSHH
-# 12:     MX    MEX  Mexico         16.8  1960  2100    17   UIS.XUNIT.GDPCAP.23.FSHH
-# 13:     CL    CHL   Chile         17.8  1960  2100    18   UIS.XUNIT.GDPCAP.3.FSGOV
-# 14:     MX    MEX  Mexico         18.8  1960  2100    19   UIS.XUNIT.GDPCAP.3.FSGOV
-# 15:     CL    CHL   Chile         18.8  1960  2100    19 UIS.XUNIT.GDPCAP.5T8.FSGOV
-# 16:     MX    MEX  Mexico         18.8  1960  2100    19 UIS.XUNIT.GDPCAP.5T8.FSGOV
-# 17:     CL    CHL   Chile         15.8  1960  2100    16  UIS.XUNIT.GDPCAP.5T8.FSHH
-# 18:     MX    MEX  Mexico         16.8  1960  2100    17  UIS.XUNIT.GDPCAP.5T8.FSHH
+#      iso2c  iso3c country pct_complete  from    to  nobs         indicator
+#     <char> <char>  <char>        <num> <int> <int> <int>            <char>
+#  1:     CL    CHL   Chile         56.5  1960  2100    52     CC.EG.INTS.KW
+#  2:     MX    MEX  Mexico         56.5  1960  2100    52     CC.EG.INTS.KW
+#  3:     CL    CHL   Chile         34.8  1960  2025    23 EG.EGY.PRIM.PP.KD
+#  4:     MX    MEX  Mexico         34.8  1960  2025    23 EG.EGY.PRIM.PP.KD
+#  5:     CL    CHL   Chile         53.0  1960  2025    35 EG.GDP.PUSE.KO.PP
+# ---                                                                       
+# 82:     MX    MEX  Mexico         54.5  1960  2025    36    PA.NUS.PRVT.PP
+# 83:     CL    CHL   Chile         53.0  1960  2025    35 SL.GDP.PCAP.EM.KD
+# 84:     MX    MEX  Mexico         53.0  1960  2025    35 SL.GDP.PCAP.EM.KD
+# 85:     CL    CHL   Chile        100.0  2004  2023    20   SPI.D5.2.5.HOUS
+# 86:     MX    MEX  Mexico         40.0  2004  2023     8   SPI.D5.2.5.HOUS
 
 # countries with less than 15% coverage for any variable
 d[pct_complete < 15, ]

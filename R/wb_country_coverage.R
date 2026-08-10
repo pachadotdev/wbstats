@@ -40,16 +40,18 @@
 #'
 #' @examples
 #' \dontrun{
-#' wb_country_coverage("GDPCAP", c("Mexico", "Chile"), 2010, 2020)
+#' wb_country_coverage("gross domestic product", c("Mexico", "Chile"), 2010, 2020)
 #' }
 wb_country_coverage <- function(pattern, country, start_date, end_date, cache) {
   if (missing(cache)) cache <- wbstats::wb_cachelist
-  indicators <- grep(pattern, cache$indicators$indicator_id, value = TRUE)
+  indicators <- cache$indicators
+  indicators_j <- grep(pattern, indicators$indicator_desc, value = FALSE)
+  indicators <- indicators[indicators_j, c("indicator_desc", "indicator_id")]
 
   country_param <- format_wb_country(country, cache = cache)
   country_param <- toupper(unlist(strsplit(country_param, split = ";")))
 
-  out <- lapply(indicators,
+  out <- lapply(indicators$indicator_id,
     function(ind) {
       d <- tryCatch({
         fromJSON(sprintf("https://raw.githubusercontent.com/pachadotdev/wbstats/refs/heads/data-coverage/%s.json", ind))
