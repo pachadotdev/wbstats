@@ -1,3 +1,8 @@
+# ============================
+# THIS IS VERY IMPORTANT:
+# DON'T RUN THIS FROM A LAPTOP
+# ============================
+
 # There is no way to query the number of observations and the minimum and
 # maximum year a value is available by indicator and country with the World
 # Bank API. This offers a workaround by downloading each indicator (variable)
@@ -21,8 +26,6 @@
 # A separate `merge-shards` job (run after all shards finish) then merges
 # every shard branch into `data-coverage` one at a time, so that merge step
 # never has concurrent pushes to contend with either.
-
-# DON'T RUN THIS FROM A LAPTOP
 
 # Already installed in data-coverage.yaml
 library(data.table)
