@@ -136,7 +136,7 @@ wb_indicators <- function(lang, include_archive = FALSE) {
 #'
 #' @param lang Language in which to return the results. If `lang` is unspecified,
 #' english is the default. For supported languages see [wb_languages()].
-#' Possible values of `lang` are in the `iso2` column. A note of warning, not
+#' Possible values of `lang` are in the `iso2c` column. A note of warning, not
 #' all data returns have support for langauges other than english. If the specific
 #' return does not support your requested language by default it will return `NA`.
 #'
