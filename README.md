@@ -116,3 +116,34 @@ dev.off()
 ```
 
 ![](man/figures/readme-gdppc-vs-lifexp.png)
+
+## How I create the package data
+
+What worked for me to query the data was to use the `format` and `per_page` arguments. You *do not* need this to work with the package.
+
+Endpoints used for the package data:
+
+* https://api.worldbank.org/v2/indicators?format=json&per_page=30000
+* https://api.worldbank.org/v2/source?format=json&per_page=100
+* https://api.worldbank.org/v2/topics?format=json&per_page=100
+* https://api.worldbank.org/v2/regions?format=json&per_page=100
+* https://api.worldbank.org/v2/incomelevel?format=json&per_page=10
+* https://api.worldbank.org/v2/lendingtypes?format=json&per_page=10
+* https://api.worldbank.org/v2/languages?format=json&per_page=100
+
+Parts of this API endpoints description comes from https://dlthub.com/context/source/world-bank-indicators-api and other were just testing things like "language" and "languages" tp update `wbstats`. I did not create this package, I just assumed its maintenance as it is a very valuable resoure.
+
+Resource          | Endpoint	                                        | Method |	Description
+------------------|---------------------------------------------------|--------|------------------------------------------
+indicators        |	/v2/indicator 	                                  | GET	   | Access to nearly 28,000 series indicators
+countries         |	/v2/country/all                                   | GET	   | All countries
+country_indicator |	/v2/country/{country_id}/indicator/{indicator_id} |	GET	   | Specific indicator for a country
+sources	          | /v2/source                                        | GET	   | All data sources
+source_indicators |	/v2/source/{source_id}/indicators                 |	GET	   | Indicators for a specific source
+topics            | /v2/topics                                        | GET    | Metadata about indicator topics
+regions           |	/v2/country/all                                   | GET	   | All regions
+income_levels     |	/v2/country/income_levels                         | GET	   | All income levels
+lending_types     |	/v2/country/lending_types                         | GET	   | All lending types
+languages         |	/v2/country/languages                             | GET	   | All languages
+
+I added this sub-section because I did not find much information in the official documentation.

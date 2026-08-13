@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wb_search • wbstats</title><link rel="stylesheet" href="../menu.css"><link rel="stylesheet" href="../content.css"><!-- MathJax Configuration --><script>
+<html lang="en"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wb_country_coverage • wbstats</title><link rel="stylesheet" href="../menu.css"><link rel="stylesheet" href="../content.css"><!-- MathJax Configuration --><script>
     window.MathJax = {
       tex: {
         inlineMath: [['\\(', '\\)'], ['$', '$']],
@@ -63,24 +63,17 @@
 <div class="content-wrapper">
         <div class="content-main">
 
-<table style="width: 100%;"><tr><td>wb_search {wbstats}</td><td style="text-align: right;">R Documentation</td></tr></table><h2>Search indicator information available through the World Bank API</h2>
+<table style="width: 100%;"><tr><td>wb_country_coverage {wbstats}</td><td style="text-align: right;">R Documentation</td></tr></table><h2>Summarize Data Coverage for World Bank Indicators</h2>
 
 <h3>Description</h3>
 
-<p>This function allows finds indicators that match a search term and returns a data frame of matching results
+<p>Given a indicator available from the World Bank API, this functions returns a pre-computed summary stored on GitHub and not available from the API that shows the percentage of non-missing (non-<code>NA</code>) observations for every country, the year range per country, and the total number of observations per country. This is useful before downloading a dataset.
 </p>
 
 
 <h3>Usage</h3>
 
-<pre><code class="language-R">wb_search(
-  pattern,
-  fields = c("indicator_id", "indicator", "indicator_desc"),
-  extra = FALSE,
-  cache,
-  ignore.case = TRUE,
-  ...
-)
+<pre><code class="language-R">wb_country_coverage(pattern, country, start_date, end_date, cache)
 </code></pre>
 
 
@@ -88,59 +81,50 @@
 
 <table role="presentation"><tr><td><code id="pattern">pattern</code></td>
 <td>
-Character string or regular expression to be matched
-</td></tr><tr><td><code id="fields">fields</code></td>
+A character string or regular expression (e.g., <code>"GDP"</code>).
+</td></tr><tr><td><code id="country">country</code></td>
 <td>
-Character vector of column names through which to search
-</td></tr><tr><td><code id="extra">extra</code></td>
+Character vector of country, region, or special value codes for the locations you want to return data for. Permissible values can be found in the countries data frame in wb_cachelist or by running <code>wb_countries()</code> directly. Specifically, values listed in the following fields <code>iso3c</code>, <code>iso2c</code>, <code>country</code>, <code>region</code>, <code>admin_region</code>, <code>income_level</code> and all of the <code>region_*</code>, <code>admin_region_*</code>, <code>income_level_*</code>, columns. As well as the following special values
+
+
+<ul><li> <p><code>"countries_only"</code> (Default)
+</p>
+</li>
+<li> <p><code>"regions_only"</code>
+</p>
+</li>
+<li> <p><code>"admin_regions_only"</code>
+</p>
+</li>
+<li> <p><code>"income_levels_only"</code>
+</p>
+</li>
+<li> <p><code>"aggregates_only"</code>
+</p>
+</li>
+<li> <p><code>"all"</code>
+</p>
+</li></ul></td></tr><tr><td><code id="start_date">start_date</code></td>
 <td>
-if FALSE, only the indicator ID and short name are returned, if <code>TRUE</code>, all columns of the <code>cache</code> parameter's indicators data frame are returned. Default is <code>FALSE</code>
-</td></tr><tr><td><code id="ignore.case">ignore.case</code></td>
+Numeric or character. If numeric it must be in <code>%Y</code> form (i.e. four digit year). For data at the subannual granularity the API supports a format as follows: for monthly data, "2016M01" and for quarterly data, "2016Q1". This also accepts a special value of "YTD", useful for more frequently updated subannual indicators.
+</td></tr><tr><td><code id="end_date">end_date</code></td>
 <td>
-if <code>FALSE</code>, the pattern matching is case sensitive and if <code>TRUE</code>, case is ignored during matching. Default is <code>TRUE</code>
+Numeric or character. If numeric it must be in <code>%Y</code> form (i.e. four digit year). For data at the subannual granularity the API supports a format as follows: for monthly data, "2016M01" and for quarterly data, "2016Q1".
 </td></tr><tr><td><code id="cache">cache</code></td>
 <td>
 List of data frames returned from <code>wb_cache()</code>. If omitted, wb_cachelist is used
-</td></tr><tr><td><code id="...">...</code></td>
-<td>
-Any additional <code>grep()</code> agruments you which to pass
 </td></tr></table><h3>Value</h3>
 
-<p>a <code>data.table</code>/<code>data.frame</code> with indicators that match the search pattern.
+<p>A <code>data.table</code> with one row per country.
 </p>
 
 
 <h3>Examples</h3>
 
-<pre><code class="language-R">
-d &lt;- wb_search(pattern = "education")
+<pre><code class="language-R">## Not run:
+wb_country_coverage("GDPCAP", c("Mexico", "Chile"), 2010, 2020)
 
-
-
-d &lt;- wb_search(pattern = "Food and Agriculture Organization", fields = "source_org")
-
-
-# with regular expression operators
-# 'poverty' OR 'unemployment' OR 'employment'
-
-d &lt;- wb_search(pattern = "poverty|unemployment|employment")
-
-
-# pass any other grep argument along as well
-# everything without 'education'
-
-d &lt;- wb_search(pattern = "education", invert = TRUE)
-
-
-# contains "gdp" AND "trade"
-
-d &lt;- wb_search("^(?=.*gdp)(?=.*trade).*", perl = TRUE)
-
-
-# contains "gdp" and NOT "trade"
-
-d &lt;- wb_search("^(?=.*gdp)(?!.*trade).*", perl = TRUE)
-
+## End(Not run)
 </code></pre>
 
 

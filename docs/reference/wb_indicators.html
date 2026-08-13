@@ -45,6 +45,7 @@
     <a href="../reference/wb_indicators.html">wb_indicators</a>
     <a href="../reference/wb_cache.html">wb_cache</a>
     <a href="../reference/wb_search.html">wb_search</a>
+    <a href="../reference/wb_country_coverage.html">wb_country_coverage</a>
     <a href="../reference/wb_data.html">wb_data</a>
   </div>
 
@@ -87,15 +88,23 @@ Language in which to return the results. If <code>lang</code> is unspecified, en
 </td></tr></table><h3>Examples</h3>
 
 <pre><code class="language-R"># can get a new list of available indicators by downloading new cache
+
 fresh_cache &lt;- wb_cache()
+
+
 fresh_indicators &lt;- fresh_cache$indicators
 
+
 # or by running the wb_indicators() function directly
+
 fresh_indicators &lt;- wb_indicators()
+
 
 # include archived indicators
 # see include_archive parameter description
-indicators_with_achrive &lt;- wb_indicators(include_archive = TRUE)
+
+indicators_with_archive &lt;- wb_indicators(include_archive = TRUE)
+
 </code></pre>
 
 

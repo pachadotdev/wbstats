@@ -45,6 +45,7 @@
     <a href="../reference/wb_indicators.html">wb_indicators</a>
     <a href="../reference/wb_cache.html">wb_cache</a>
     <a href="../reference/wb_search.html">wb_search</a>
+    <a href="../reference/wb_country_coverage.html">wb_country_coverage</a>
     <a href="../reference/wb_data.html">wb_data</a>
   </div>
 
@@ -65,20 +66,17 @@
 
 
 
-<div id="wbstats-1.1" class="section level1">
-<h1>wbstats 1.1</h1>
-<div id="changes" class="section level2">
-<h2>Changes:</h2>
+<div id="wbstats-1.2.0" class="section level1">
+<h1>wbstats 1.2.0</h1>
 <ul><li>Removed the <code>dplyr</code>, <code>tidyr</code>, <code>readr</code>, <code>tidyselect</code>, <code>tibble</code>, <code>rlang</code>, and <code>magrittr</code>
 dependencies in favor of <code>data.table</code> (for row-binding and reshaping data) and base R.</li>
 <li>Removed the <code>stringr</code> and <code>lubridate</code> dependencies in favor of base R string and date
 handling.</li>
-<li>Functions now return plain <code>data.frame</code> objects instead of <code>tibble</code>s.</li>
-<li>The re-exported <code>%&gt;%</code> pipe operator has been removed. Use the base R pipe (<code>|&gt;</code>) instead.</li>
+<li>Functions now return <code>data.table</code> objects instead of <code>tibble</code>s.</li>
+<li>I removed all the retired indicators and those that return empty tables from <code>wb_cachelist</code>.</li>
 </ul></div>
-</div>
-<div id="wbstats-1.0.3" class="section level1">
-<h1>wbstats 1.0.3</h1>
+<div id="wbstats-1.1.0" class="section level1">
+<h1>wbstats 1.1.0</h1>
 <ul><li>Fixes issues with examples taking too long to run</li>
 </ul></div>
 <div id="wbstats-1.0.2" class="section level1">
@@ -91,7 +89,7 @@ handling.</li>
 <div id="wbstats-1.0.1" class="section level1">
 <h1>wbstats 1.0.1</h1>
 <p>Release <code>1.0.1</code> fixes a handful of minor issues</p>
-<div id="changes-1" class="section level2">
+<div id="changes" class="section level2">
 <h2>Changes:</h2>
 <ul><li>Lowered the per_page limit on API requests to the indicators endpoint in functions
 <code>wb_indicators()</code> and <code>wb_cache()</code>. This should result in fewer timeouts.</li>
@@ -105,7 +103,7 @@ handling.</li>
 <h1>wbstats 1.0.0</h1>
 <p>The <code>1.0.0</code> release represents a complete overhaul of the <code>wbstats</code> package to
 hopefully be more consistent and easy to use.</p>
-<div id="changes-2" class="section level2">
+<div id="changes-1" class="section level2">
 <h2>Changes:</h2>
 <ul><li>Data now returns in a wide format by default with each indicator being its own column</li>
 <li>Adoption of the “tidyverse” ecosystem.</li>
@@ -119,7 +117,7 @@ hopefully be more consistent and easy to use.</p>
 </div>
 <div id="wbstats-0.2.1.9000" class="section level1">
 <h1>wbstats 0.2.1.9000</h1>
-<div id="changes-3" class="section level2">
+<div id="changes-2" class="section level2">
 <h2>Changes:</h2>
 <ul><li>add non-exported .wb_url function for debugging purposes</li>
 </ul></div>
@@ -134,7 +132,7 @@ hopefully be more consistent and easy to use.</p>
 of the world bank API. This is now properly handled.</li>
 <li>Indicators from source <code>WDI Database Archives</code> are now accessible</li>
 </ul></div>
-<div id="changes-4" class="section level2">
+<div id="changes-3" class="section level2">
 <h2>Changes:</h2>
 <ul><li><p>Now uses Version 2 of the World Bank API.</p>
 <p>This new version of the API returns some new columns the old version didn’t.
@@ -154,7 +152,7 @@ common enough that the added dependency is worth the addition.</p></li>
 </div>
 <div id="wbstats-0.1.1" class="section level1">
 <h1>wbstats 0.1.1</h1>
-<div id="changes-5" class="section level2">
+<div id="changes-4" class="section level2">
 <h2>Changes:</h2>
 <ul><li>Add ‘aggregates’ and ‘countries_only’ options to <code>wb()</code> per bapfeld pr</li>
 <li>update cached data in <code>wb_cachelist</code></li>
