@@ -5,6 +5,7 @@
 * Removed the `stringr` and `lubridate` dependencies in favor of base R string and date
   handling.
 * Functions now return `data.table` objects instead of `tibble`s.
+* I added `wb_country_coverage()` to summarize the available data before downloading the series. 
 * I removed all the retired indicators and those that return empty tables from `wb_cachelist`.
 
 # wbstats 1.1.0

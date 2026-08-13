@@ -53,6 +53,8 @@ wb_country_coverage <- function(pattern, country, start_date, end_date, cache) {
 
   out <- lapply(indicators$indicator_id,
     function(ind) {
+      # ind = "6.0.GDPpc_constant"
+      print(ind)
       d <- tryCatch({
         fromJSON(sprintf("https://raw.githubusercontent.com/pachadotdev/wbstats/refs/heads/data-coverage/%s.json", ind))
       }, error = function(e) {
@@ -61,9 +63,17 @@ wb_country_coverage <- function(pattern, country, start_date, end_date, cache) {
       })
 
       if (is.null(d)) return(NULL)
+      if (nrow(d) == 0L) return(NULL)
 
       d <- as.data.table(d)
-      d <- d[start_date >= from & end_date <= to & iso3c %in% country_param]
+      
+      # d <- d[start_date >= from & end_date <= to & iso3c %in% country_param]
+      d <- d[iso3c %in% country_param]
+
+      if (any("start_date" %in% colnames(d))) {
+        d <- d[start_date >= from & end_date]
+      }
+      
       if (nrow(d) == 0) return(NULL)
       d[, indicator := ind]
       d
