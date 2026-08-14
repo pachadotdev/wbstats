@@ -8,22 +8,22 @@ http_interactions:
       access-control-allow-headers: X-Requested-With
       access-control-allow-methods: GET
       access-control-allow-origin: '*'
-      age: '5'
-      cache-control: public, max-age=86400
+      age: '262'
+      cache-control: public, max-age=85953
       cf-cache-status: HIT
-      cf-ray: a233946b1cca0339-LHR
+      cf-ray: a2aec0a84a359911-LHR
       content-encoding: gzip
       content-type: application/json;charset=utf-8
-      date: Thu, 30 Jul 2026 10:11:31 GMT
-      expires: Fri, 31 Jul 2026 10:11:31 GMT
-      last-modified: Thu, 30 Jul 2026 10:11:26 GMT
+      date: Fri, 14 Aug 2026 08:57:32 GMT
+      expires: Sat, 15 Aug 2026 08:50:05 GMT
+      last-modified: Fri, 14 Aug 2026 08:45:42 GMT
       request-context: appId=cid-v1:da002513-bd8b-4441-9f30-737944134422
       server: cloudflare
       set-cookie:
-      - __cf_bm=oSHCT6cvdlwXygML7AtTRhQnwUUO4n33TtcRHh7ABvw-1785406291.6968858-1.0.1.1-x298cFwxcFsxQYfZhXjOyrwYHCtrMLGiMOSpCVjPoTWS8_npk9nse9EvJjFTaAULFgkIwvWIjvAW7vLKi6H60S1wn_ywo6EgfdR.hNG7sXbUBYUIqHO3TiVnpdSfb8Hj;
-        HttpOnly; SameSite=None; Secure; Path=/; Domain=worldbank.org; Expires=Thu,
-        30 Jul 2026 10:41:31 GMT
-      - _cfuvid=Nnjkwjjh1bc4NrLgBmuo7VgBR6mpqgiBgkDZiloVXl0-1785406291.6968858-1.0.1.1-9f8wZPzEN7pigtdb3fX1bnrwIu5xyg81igwUsdJw.Bg;
+      - __cf_bm=YE8mydWIYX7DgAry8bzXSECcNw6ilB4LY00dRR3p1zU-1786697852.2013779-1.0.1.1-_.45mN9AXBbvrfFeNPD.ecFRM0MVNy2cypFlIaMGakSMGiqtbuGgFv2EpzRPs7RmsV4S87qvSeGxTJZrM430muCFv2y5LN2oCcd2ERSGh6OMQAGOqhBlaTTlMz6ydGYC;
+        HttpOnly; SameSite=None; Secure; Path=/; Domain=worldbank.org; Expires=Fri,
+        14 Aug 2026 09:27:32 GMT
+      - _cfuvid=rTzqFCbugNRYv.0DWsJe39zjA2DqWRQZ5OQlY6xwuuQ-1786697852.2013779-1.0.1.1-dEQC9noVAj2llQcBhflGMjUOtXWXpr8TaJyYMeODprc;
         HttpOnly; SameSite=None; Secure; Path=/; Domain=worldbank.org
       vary: accept-encoding
       x-powered-by: ASP.NET
@@ -34,5 +34,5 @@ http_interactions:
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2008","value":1695855083497.52,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2007","value":1397114486368.67,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2006","value":1107626541434.92,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
-  recorded_at: 2026-07-30 10:11:31
+  recorded_at: 2026-08-14 08:57:32
 recorded_with: VCR-vcr/2.1.0

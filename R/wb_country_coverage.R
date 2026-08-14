@@ -43,6 +43,9 @@
 #' wb_country_coverage("gross domestic product", c("Mexico", "Chile"), 2010, 2020)
 #' }
 wb_country_coverage <- function(pattern, country, start_date, end_date, cache) {
+  # from https://github.com/Rdatatable/data.table/issues/850#issuecomment-259466153
+  from <- iso3c <- indicator <- NULL
+  
   if (missing(cache)) cache <- wbstats::wb_cachelist
   indicators <- cache$indicators
   indicators_j <- grep(pattern, indicators$indicator_desc, value = FALSE)
@@ -68,7 +71,7 @@ wb_country_coverage <- function(pattern, country, start_date, end_date, cache) {
       d <- d[iso3c %in% country_param]
 
       if (any("start_date" %in% colnames(d))) {
-        d <- d[start_date >= from & end_date]
+        d <- d[from >= start_date & from <= end_date]
       }
       
       if (nrow(d) == 0) return(NULL)

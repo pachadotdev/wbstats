@@ -52,7 +52,7 @@ wb_data(
 
 \item{date_as_class_date}{Logical. If \code{TRUE} the date field is returned as class \link{Date}, useful when working with non-annual data or data at mixed resolutions. Default is \code{FALSE} available value until the next available period (max number of periods back tracked will be limited by \code{mrv} number). Default is \code{FALSE}}
 
-\item{lang}{Language in which to return the results. If \code{lang} is unspecified, english is the default. For supported languages see \code{\link[=wb_languages]{wb_languages()}}. Possible values of \code{lang} are in the \code{iso2} column. A note of warning, not all data returns have support for langauges other than english. If the specific return does not support your requested language by default it will return \code{NA}.}
+\item{lang}{Language in which to return the results. If \code{lang} is unspecified, english is the default. For supported languages see \code{\link[=wb_languages]{wb_languages()}}. Possible values of \code{lang} are in the \code{iso2c} column. A note of warning, not all data returns have support for langauges other than english. If the specific return does not support your requested language by default it will return \code{NA}.}
 }
 
 \value{

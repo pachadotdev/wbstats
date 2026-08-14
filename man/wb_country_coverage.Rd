@@ -38,7 +38,7 @@ Given a indicator available from the World Bank API, this functions returns a pr
 
 \examples{
 \dontrun{
-wb_country_coverage("GDPCAP", c("Mexico", "Chile"), 2010, 2020)
+wb_country_coverage("gross domestic product", c("Mexico", "Chile"), 2010, 2020)
 }
 }
 

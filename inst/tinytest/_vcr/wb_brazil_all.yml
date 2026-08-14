@@ -5,16 +5,16 @@ http_interactions:
   response:
     status: 200
     headers:
-      date: Thu, 30 Jul 2026 10:12:37 GMT
+      date: Fri, 14 Aug 2026 08:57:32 GMT
       content-type: application/json;charset=utf-8
-      cf-ray: a2339607b8c30339-LHR
+      cf-ray: a2aec0aa78c29911-LHR
       cf-cache-status: HIT
       access-control-allow-origin: '*'
-      age: '9'
+      age: '802'
       cache-control: public, max-age=86400
       content-encoding: gzip
-      expires: Fri, 31 Jul 2026 10:12:37 GMT
-      last-modified: Thu, 30 Jul 2026 10:12:28 GMT
+      expires: Sat, 15 Aug 2026 08:57:32 GMT
+      last-modified: Fri, 14 Aug 2026 08:44:10 GMT
       server: cloudflare
       vary: accept-encoding
       access-control-allow-headers: X-Requested-With
@@ -89,5 +89,5 @@ http_interactions:
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"1962","value":19231747851.5332,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"1961","value":17275940449.3837,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"1960","value":17030465539.3906,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
-  recorded_at: 2026-07-30 10:12:37
+  recorded_at: 2026-08-14 08:57:32
 recorded_with: VCR-vcr/2.1.0

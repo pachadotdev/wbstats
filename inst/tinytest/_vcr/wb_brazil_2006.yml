@@ -5,15 +5,16 @@ http_interactions:
   response:
     status: 200
     headers:
-      date: Thu, 30 Jul 2026 10:12:52 GMT
+      date: Fri, 14 Aug 2026 08:57:32 GMT
       content-type: application/json;charset=utf-8
-      cf-ray: a23396083a600339-LHR
-      cf-cache-status: MISS
+      cf-ray: a2aec0aada0b9911-LHR
+      cf-cache-status: HIT
       access-control-allow-origin: '*'
+      age: '800'
       cache-control: public, max-age=86400
       content-encoding: gzip
-      expires: Fri, 31 Jul 2026 10:12:52 GMT
-      last-modified: Thu, 30 Jul 2026 10:12:52 GMT
+      expires: Sat, 15 Aug 2026 08:57:32 GMT
+      last-modified: Fri, 14 Aug 2026 08:44:11 GMT
       server: cloudflare
       vary: accept-encoding
       access-control-allow-headers: X-Requested-With
@@ -23,5 +24,5 @@ http_interactions:
     body:
       string: '[{"page":1,"pages":1,"per_page":20000,"total":1,"sourceid":"2","lastupdated":"2026-07-13"},[{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"BR","value":"Brazil"},"countryiso3code":"BRA","date":"2006","value":1107626541434.92,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
-  recorded_at: 2026-07-30 10:12:52
+  recorded_at: 2026-08-14 08:57:32
 recorded_with: VCR-vcr/2.1.0

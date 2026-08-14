@@ -5,16 +5,16 @@ http_interactions:
   response:
     status: 200
     headers:
-      date: Thu, 30 Jul 2026 10:16:30 GMT
+      date: Fri, 14 Aug 2026 08:57:33 GMT
       content-type: application/json;charset=utf-8
-      cf-ray: a2339bb929480339-LHR
+      cf-ray: a2aec0ae4c819911-LHR
       cf-cache-status: HIT
       access-control-allow-origin: '*'
-      age: '0'
+      age: '791'
       cache-control: public, max-age=86400
       content-encoding: gzip
-      expires: Fri, 31 Jul 2026 10:16:30 GMT
-      last-modified: Thu, 30 Jul 2026 10:16:30 GMT
+      expires: Sat, 15 Aug 2026 08:57:33 GMT
+      last-modified: Fri, 14 Aug 2026 08:44:21 GMT
       server: cloudflare
       vary: accept-encoding
       access-control-allow-headers: X-Requested-With
@@ -28,22 +28,23 @@ http_interactions:
         total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":7176482165,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
         total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":7086704141,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.POP.TOTL","value":"Population,
         total"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":7000860073,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
-  recorded_at: 2026-07-30 10:16:30
+  recorded_at: 2026-08-14 08:57:33
 - request:
     method: GET
     uri: https://api.worldbank.org/v2/en/country/wld/indicator/NY.GDP.MKTP.CD?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
   response:
     status: 200
     headers:
-      date: Thu, 30 Jul 2026 10:17:01 GMT
+      date: Fri, 14 Aug 2026 08:57:33 GMT
       content-type: application/json;charset=utf-8
-      cf-ray: a2339c3cdd6f0339-LHR
-      cf-cache-status: MISS
+      cf-ray: a2aec0ae8d809911-LHR
+      cf-cache-status: HIT
       access-control-allow-origin: '*'
+      age: '748'
       cache-control: public, max-age=86400
       content-encoding: gzip
-      expires: Fri, 31 Jul 2026 10:17:01 GMT
-      last-modified: Thu, 30 Jul 2026 10:17:01 GMT
+      expires: Sat, 15 Aug 2026 08:57:33 GMT
+      last-modified: Fri, 14 Aug 2026 08:45:04 GMT
       server: cloudflare
       vary: accept-encoding
       access-control-allow-headers: X-Requested-With
@@ -57,22 +58,23 @@ http_interactions:
         (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":76055253368044.6,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":74388644404622.5,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"NY.GDP.MKTP.CD","value":"GDP
         (current US$)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":66893676131662.8,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
-  recorded_at: 2026-07-30 10:17:01
+  recorded_at: 2026-08-14 08:57:33
 - request:
     method: GET
     uri: https://api.worldbank.org/v2/en/country/wld/indicator/SL.UEM.TOTL.ZS?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
   response:
     status: 200
     headers:
-      date: Thu, 30 Jul 2026 10:17:12 GMT
+      date: Fri, 14 Aug 2026 08:57:33 GMT
       content-type: application/json;charset=utf-8
-      cf-ray: a2339c7baa0d0339-LHR
-      cf-cache-status: MISS
+      cf-ray: a2aec0aede609911-LHR
+      cf-cache-status: HIT
       access-control-allow-origin: '*'
+      age: '765'
       cache-control: public, max-age=86400
       content-encoding: gzip
-      expires: Fri, 31 Jul 2026 10:17:12 GMT
-      last-modified: Thu, 30 Jul 2026 10:17:12 GMT
+      expires: Sat, 15 Aug 2026 08:57:33 GMT
+      last-modified: Fri, 14 Aug 2026 08:44:47 GMT
       server: cloudflare
       vary: accept-encoding
       access-control-allow-headers: X-Requested-With
@@ -86,22 +88,23 @@ http_interactions:
         total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":6.15209851207895,"unit":"","obs_status":"","decimal":1,"footnote":""},{"indicator":{"id":"SL.UEM.TOTL.ZS","value":"Unemployment,
         total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":6.14906482504464,"unit":"","obs_status":"","decimal":1,"footnote":""},{"indicator":{"id":"SL.UEM.TOTL.ZS","value":"Unemployment,
         total (% of total labor force) (modeled ILO estimate)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":6.28118787402205,"unit":"","obs_status":"","decimal":1,"footnote":""}]]'
-  recorded_at: 2026-07-30 10:17:12
+  recorded_at: 2026-08-14 08:57:33
 - request:
     method: GET
     uri: https://api.worldbank.org/v2/en/country/wld/indicator/SP.DYN.CBRT.IN?date=2010%3A2014&footnote=y&cntrycode=y&per_page=20000&format=json
   response:
     status: 200
     headers:
-      date: Thu, 30 Jul 2026 10:17:22 GMT
+      date: Fri, 14 Aug 2026 08:57:33 GMT
       content-type: application/json;charset=utf-8
-      cf-ray: a2339cbf6dc00339-LHR
-      cf-cache-status: MISS
+      cf-ray: a2aec0af1f099911-LHR
+      cf-cache-status: HIT
       access-control-allow-origin: '*'
+      age: '763'
       cache-control: public, max-age=86400
       content-encoding: gzip
-      expires: Fri, 31 Jul 2026 10:17:22 GMT
-      last-modified: Thu, 30 Jul 2026 10:17:22 GMT
+      expires: Sat, 15 Aug 2026 08:57:33 GMT
+      last-modified: Fri, 14 Aug 2026 08:44:49 GMT
       server: cloudflare
       vary: accept-encoding
       access-control-allow-headers: X-Requested-With
@@ -115,5 +118,5 @@ http_interactions:
         rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2012","value":20.414916627937,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.DYN.CBRT.IN","value":"Birth
         rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2011","value":20.3011656278547,"unit":"","obs_status":"","decimal":0,"footnote":""},{"indicator":{"id":"SP.DYN.CBRT.IN","value":"Birth
         rate, crude (per 1,000 people)"},"country":{"id":"1W","value":"World"},"countryiso3code":"WLD","date":"2010","value":20.1885832819796,"unit":"","obs_status":"","decimal":0,"footnote":""}]]'
-  recorded_at: 2026-07-30 10:17:22
+  recorded_at: 2026-08-14 08:57:33
 recorded_with: VCR-vcr/2.1.0
